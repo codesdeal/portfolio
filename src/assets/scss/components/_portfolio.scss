@@ -1,0 +1,136 @@
+.portfolio-grid {
+    .filter-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        button {
+            background: none;
+            border: 2px solid var(--wp--preset--color--primary);
+            color: var(--wp--preset--color--primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: var(--wp--preset--size--text--block--16);
+
+            &:hover,
+            &.active {
+                background: var(--wp--preset--color--primary);
+                color: var(--wp--preset--color--white);
+            }
+        }
+    }
+
+    .portfolio-item {
+        .card {
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
+            .card-img {
+                position: relative;
+                overflow: hidden;
+                
+                img {
+                    transition: transform 0.5s ease;
+                }
+
+                .card-img-overlay {
+                    opacity: 0;
+                    background: rgba(var(--wp--preset--color--primary), 0.9);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: opacity 0.3s ease;
+
+                    .overlay-content {
+                        text-align: center;
+                        color: var(--wp--preset--color--white);
+
+                        h3 {
+                            font-size: var(--wp--preset--size--text--block--21);
+                            margin-bottom: 0.5rem;
+                        }
+
+                        .project-type {
+                            font-size: var(--wp--preset--size--text--block--16);
+                            opacity: 0.8;
+                        }
+
+                        .btn-view {
+                            display: inline-block;
+                            margin-top: 1rem;
+                            padding: 0.5rem 1.5rem;
+                            border: 2px solid var(--wp--preset--color--white);
+                            color: var(--wp--preset--color--white);
+                            border-radius: 30px;
+                            transition: all 0.3s ease;
+
+                            &:hover {
+                                background: var(--wp--preset--color--white);
+                                color: var(--wp--preset--color--primary);
+                            }
+                        }
+                    }
+                }
+
+                &:hover {
+                    img {
+                        transform: scale(1.1);
+                    }
+
+                    .card-img-overlay {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.portfolio-single {
+    padding: 4rem 0;
+
+    .project-info {
+        .project-title {
+            font-size: var(--wp--preset--size--text--block--45);
+            margin-bottom: 2rem;
+        }
+
+        .project-meta {
+            .meta-item {
+                margin-bottom: 1.5rem;
+
+                h5 {
+                    font-size: var(--wp--preset--size--text--block--18);
+                    color: var(--wp--preset--color--primary);
+                    margin-bottom: 0.5rem;
+                }
+
+                p {
+                    font-size: var(--wp--preset--size--text--block--16);
+                    margin: 0;
+                }
+
+                .btn-primary {
+                    display: inline-block;
+                    padding: 0.75rem 1.5rem;
+                    background: var(--wp--preset--color--primary);
+                    color: var(--wp--preset--color--white);
+                    border-radius: 30px;
+                    text-decoration: none;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        background: var(--wp--preset--color--secondary);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -20,7 +20,6 @@ $fa-font-path: "../webfonts";
 @import "../../../node_modules/@fortawesome/fontawesome-free/scss/regular";
 @import "../../../node_modules/@fortawesome/fontawesome-free/scss/brands";
 
-
 @import './objects/wp';
 @import './objects/grid';
 
@@ -32,6 +31,7 @@ $fa-font-path: "../webfonts";
 @import './components/comment';
 @import './components/search-form';
 @import './components/nav-links';
+@import './components/portfolio';
 
 @import './utils/helpers';
 @import './utils/flex';
