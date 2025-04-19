@@ -1,0 +1,56 @@
+{
+  "name": "devabu",
+  "version": "1.0.0",
+  "description": "An Interactive Responsive Agency/Marketing WordPress Theme",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build --prod",
+    "bundle": "gulp bundle --prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codesdeal/myfirstwptheme.git"
+  },
+  "keywords": [
+    "light",
+    "dark",
+    "two-columns",
+    "right-sidebar",
+    "responsive-layout",
+    "accessibility-ready"
+  ],
+  "author": "Abu Bakkar Siddique",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codesdeal/myfirstwptheme/issues"
+  },
+  "homepage": "https://github.com/codesdeal/myfirstwptheme#readme",
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "aos": "^2.3.4",
+    "babel-loader": "^10.0.0",
+    "bootstrap": "^5.3.5",
+    "browser-sync": "^3.0.3",
+    "del": "^8.0.0",
+    "gulp": "^5.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-if": "^3.0.0",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-replace": "^1.1.4",
+    "gulp-sass": "^6.0.1",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-zip": "^6.1.0",
+    "sass": "^1.86.0",
+    "vinyl-named": "^1.1.0",
+    "webpack-stream": "^7.0.0"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "yargs": "^17.7.2"
+  }
+}

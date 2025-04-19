@@ -9,9 +9,9 @@
 /wp-content/index.php
 /wp-content/languages
 /wp-content/plugins/index.php
-/wp-content/themes/index.php
+#/wp-content/themes/index.php
 /wp-includes/
-/index.php
+# /index.php
 /license.txt
 /readme.html
 /wp-*.php
@@ -32,6 +32,9 @@ wp-config.php
 # Log files
 *.log
 
+# system files
+.DS_Store
+
 # htaccess
 /.htaccess
 
@@ -46,3 +49,6 @@ wp-config.php
 # Note: If you wish to whitelist themes,
 # uncomment the next line
 #/wp-content/themes
+node_modules
+dist
+packaged
