@@ -137,6 +137,32 @@ function _themename_customize_register($wp_customize) {
 		]
 	);
 
+    /*################## Testimonials Settings ###############*/
+    $wp_customize->add_section('_themename_testimonials_options', array(
+        'title' => esc_html__('Testimonials Options', '_themename'),
+        'description' => esc_html__('You can change testimonials section options from here.', '_themename'),
+        'priority' => 25
+    ));
+
+    // Register testimonials overview text
+    $wp_customize->add_setting(
+        '_themename_testimonials_overview',
+        [
+            'default'           => '',
+            'sanitize_callback' => '_themename_sanitize_footer_info',
+        ]
+    );
+
+    // Create the testimonials overview setting field
+    $wp_customize->add_control(
+        '_themename_testimonials_overview',
+        [
+            'label'       => esc_attr__('Testimonials Section Overview', '_themename'),
+            'description' => esc_attr__('Add heading and description for the testimonials section.', '_themename'),
+            'section'     => '_themename_testimonials_options',
+            'type'        => 'textarea',
+        ]
+    );
 
     /*################## Footer Settings ###############*/
     $wp_customize->selective_refresh->add_partial('_themename_footer_partials', array(

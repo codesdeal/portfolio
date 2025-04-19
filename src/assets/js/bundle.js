@@ -1,8 +1,12 @@
-// import Slider from './components/slider.js';
+// Import dependencies
 import Navigation from './components/navigation.js';
 import * as bootstrap from 'bootstrap';
 import '@fortawesome/fontawesome-free/js/all.min.js';
 import Isotope from 'isotope-layout';
+import Swiper from 'swiper';
+import { Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 import $ from 'jquery';
 import AOS from 'aos';
@@ -35,6 +39,33 @@ document.addEventListener('DOMContentLoaded', function () {
         
         iso.arrange({ filter: filterValue === '*' ? null : filterValue });
       });
+    });
+  }
+
+  // Initialize Testimonials Slider
+  const testimonialSlider = document.querySelector('.testimonials-slider');
+  if (testimonialSlider) {
+    new Swiper('.testimonials-slider', {
+      modules: [Pagination, Autoplay],
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+        },
+        992: {
+          slidesPerView: 3,
+        }
+      }
     });
   }
 

@@ -22,6 +22,10 @@ get_header(); ?>
     <?php get_template_part('template-parts/home/features'); ?>
     <!-- ###home features section -->
 
+    <!-- testimonials section -->
+    <?php get_template_part('template-parts/home/testimonials'); ?>
+    <!-- ###testimonials section -->
+
     <!-- home features section -->
     <?php get_template_part('template-parts/portfolio/grid'); ?>
     <!-- ###home features section -->
