@@ -4,9 +4,6 @@ function devabu_assets() {
 
     wp_enqueue_style('devabu-stylesheet', get_template_directory_uri() . '/dist/assets/css/bundle.css', array(), '1.0.0', 'all');
 
-    // include(get_template_directory() . '/lib/inline-css.php');
-    // wp_add_inline_style( 'devabu-stylesheet', $inline_styles );
-
     wp_enqueue_script('jquery');
     wp_enqueue_script('devabu-scripts', get_template_directory_uri() . '/dist/assets/js/bundle.js', array('jquery'), '1.0.0', true);
 }
