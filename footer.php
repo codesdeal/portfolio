@@ -1,7 +1,7 @@
         </div>
 
         <?php 
-            $footer_bg = devabu_sanitize_footer_bg(get_theme_mod( 'devabu_footer_bg', 'dark' ));
+            $footer_bg = _themename_sanitize_footer_bg(get_theme_mod( '_themename_footer_bg', 'dark' ));
         ?>        
         <footer id="footer" role="contentinfo">
             <div class="c-footer c-footer--<?php echo $footer_bg; ?>">

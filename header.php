@@ -6,7 +6,7 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?> >
-<a class="u-skip-link" href="#content"><?php esc_attr_e( 'Skip to content', 'devabu' ); ?></a>
+<a class="u-skip-link" href="#content"><?php esc_attr_e( 'Skip to content', '_themename' ); ?></a>
 <header role="banner">
     <div class="c-header">
         <div class="o-container u-flex u-align-justify u-align-middle">
@@ -18,7 +18,7 @@
                 <?php } ?>
             </div>
             <div class="c-navigation">
-                <nav class="header-nav" role="navigation" aria-label="<?php esc_html_e( 'Main Navigation', 'devabu' ) ?>">
+                <nav class="header-nav" role="navigation" aria-label="<?php esc_html_e( 'Main Navigation', '_themename' ) ?>">
                     <?php wp_nav_menu( array('theme_location' => 'main-menu') ) ?>
                 </nav>
             </div>

@@ -19,7 +19,7 @@
                 </h2>
             <?php } ?>
             <div class="c-post__meta">
-                <?php devabu_post_meta(); ?>
+                <?php _themename_post_meta(); ?>
             </div>
         </header>
 
@@ -42,10 +42,10 @@
             <?php 
              if(has_category()){
                 echo '<div class="c-post__cats">';
-                $cats_list = get_the_category_list( esc_html__(',', 'devabu') );
+                $cats_list = get_the_category_list( esc_html__(',', '_themename') );
                 printf(
                     wp_kses(
-                        __('Posted in: %s', 'devabu'),
+                        __('Posted in: %s', '_themename'),
                         [
                             'span' => [
                                 'class' => []
@@ -67,6 +67,6 @@
         <?php } ?>
 
 
-        <?php if( !is_single()) { devabu_readmore_link();} ?>   
+        <?php if( !is_single()) { _themename_readmore_link();} ?>   
     </div>
 </article>

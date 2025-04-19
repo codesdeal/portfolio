@@ -1,0 +1,21 @@
+.c-footer {
+    background-color: var(--wp--preset--color--secondary);
+    padding: rem-calc(65) 0;
+    color: #ffffff;
+    &--light {
+        background-color: var(--wp--preset--color--secondary);
+        color: var(--wp--preset--color--white);
+    }
+}
+.c-site-info {
+    background-color: var(--wp--preset--color--secondary);
+    padding: rem-calc(15) 0;
+    text-align: center;
+    color: #ffffff;
+    font-size: rem-calc(15px);
+    font-weight: 300;
+    &--light {
+        background-color:var(--wp--preset--color--secondary);
+        color: #ffffff;
+    }
+}

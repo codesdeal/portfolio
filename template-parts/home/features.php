@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="top-title-sec">
-                    <?php echo get_theme_mod( 'devabu_home_company_logo_overview', '' ); ?>
+                    <?php echo get_theme_mod( '_themename_home_company_logo_overview', '' ); ?>
                 </div>
 
                 <div class="img-sec">

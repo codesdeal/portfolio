@@ -3,18 +3,18 @@
  * Registers a custom post type for FAQs.
  * @package devabu
  */
-function devabu_post_type_faq() {
+function _themename_post_type_faq() {
     $labels = array(
-        'name'               => __('FAQs', 'devabu'),
-        'singular_name'      => __('FAQ', 'devabu'),
-        'menu_name'          => __('FAQs', 'devabu'),
-        'all_items'          => __('All FAQs', 'devabu'),
-        'add_new'            => __('Add New FAQ', 'devabu'),
-        'add_new_item'       => __('Add FAQ', 'devabu'),
-        'edit_item'          => __('Edit FAQ', 'devabu'),
-        'new_item'           => __('New FAQ', 'devabu'),
-        'view_item'          => __('View FAQ', 'devabu'),
-        'not_found'          => __('No FAQs Found', 'devabu'),
+        'name'               => __('FAQs', '_themename'),
+        'singular_name'      => __('FAQ', '_themename'),
+        'menu_name'          => __('FAQs', '_themename'),
+        'all_items'          => __('All FAQs', '_themename'),
+        'add_new'            => __('Add New FAQ', '_themename'),
+        'add_new_item'       => __('Add FAQ', '_themename'),
+        'edit_item'          => __('Edit FAQ', '_themename'),
+        'new_item'           => __('New FAQ', '_themename'),
+        'view_item'          => __('View FAQ', '_themename'),
+        'not_found'          => __('No FAQs Found', '_themename'),
     );
 
     $args = array(
@@ -34,4 +34,4 @@ function devabu_post_type_faq() {
     );
     register_post_type('faq', $args);
 }
-add_action('init', 'devabu_post_type_faq');
+add_action('init', '_themename_post_type_faq');

@@ -1,1 +1,1 @@
-<p><?php echo apply_filters( 'devabu_no_post_text', esc_html__('Sorry, no posts match your criteria.', 'devabu')) ?></p>
+<p><?php echo apply_filters( '_themename_no_post_text', esc_html__('Sorry, no posts match your criteria.', '_themename')) ?></p>

@@ -24,7 +24,7 @@
             <?php for ( $i = 2; $i <= 4; $i++ ) : ?>
                 <div class="o-row__column o-row__column--span-12 o-row__column--span-3@medium mobile-spacing">
                     <div class="off-address">
-                        <?php echo wp_kses_post( get_theme_mod( "devabu_footer_info_col_$i", '' ) ); ?>
+                        <?php echo wp_kses_post( get_theme_mod( "_themename_footer_info_col_$i", '' ) ); ?>
                     </div>
                 </div>
             <?php endfor; ?>

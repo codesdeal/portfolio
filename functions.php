@@ -3,7 +3,7 @@
 /**
  * Automatically require all PHP files from /lib and /inc directories.
  */
-function devabu_include_all_files() {
+function _themename_include_all_files() {
 	$directories = ['lib', 'inc', 'inc/post-types'];
 
 	foreach ( $directories as $dir ) {
@@ -16,7 +16,10 @@ function devabu_include_all_files() {
 		}
 	}
 }
-devabu_include_all_files();
+_themename_include_all_files();
 
+add_action( 'init_language_setup', function() {
+    load_theme_textdomain( '_themename', get_template_directory() . '/languages' );
+} );
 
 ?>

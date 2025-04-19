@@ -4,7 +4,7 @@
             <?php get_template_part('template-parts/post/content', get_post_format() ); ?>
         <?php } ?>  
         <?php the_posts_pagination(); ?>
-        <?php do_action('devabu_after_pagination'); ?>
+        <?php do_action('_themename_after_pagination'); ?>
 
 <?php } else { ?>
     <?php get_template_part('template-parts/post/content', 'none'); ?>

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row g-4">
             <div class="top-title-sec">
-                <?php echo get_theme_mod( 'devabu_home_blog_overview', '' ); ?>
+                <?php echo get_theme_mod( '_themename_home_blog_overview', '' ); ?>
             </div>
                 <?php
                     $blog_posts = new WP_Query( array(

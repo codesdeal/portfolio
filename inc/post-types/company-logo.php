@@ -4,18 +4,18 @@
  * settings, and capabilities.
  *  @package devabu
  */
-function devabu_post_type_company_logo() {
+function _themename_post_type_company_logo() {
     $labels = array(
-        'name'               => __('Company Logo', 'devabu'),
-        'singular_name'      => __('Company Logo', 'devabu'),
-        'menu_name'          => __('Company Logo', 'devabu'),
-        'all_items'          => __('All Company Logos', 'devabu'),
-        'add_new'            => __('Add New Logo', 'devabu'),
-        'add_new_item'       => __('Add Company Logo', 'devabu'),
-        'edit_item'          => __('Edit Company Logo', 'devabu'),
-        'new_item'           => __('New Company Logo', 'devabu'),
-        'view_item'          => __('View Company Logo', 'devabu'),
-        'not_found'          => __('No Company Logo Found', 'devabu'),
+        'name'               => __('Company Logo', '_themename'),
+        'singular_name'      => __('Company Logo', '_themename'),
+        'menu_name'          => __('Company Logo', '_themename'),
+        'all_items'          => __('All Company Logos', '_themename'),
+        'add_new'            => __('Add New Logo', '_themename'),
+        'add_new_item'       => __('Add Company Logo', '_themename'),
+        'edit_item'          => __('Edit Company Logo', '_themename'),
+        'new_item'           => __('New Company Logo', '_themename'),
+        'view_item'          => __('View Company Logo', '_themename'),
+        'not_found'          => __('No Company Logo Found', '_themename'),
     );
 
     $args = array(
@@ -35,4 +35,4 @@ function devabu_post_type_company_logo() {
     );
     register_post_type('company_logo', $args);
 }
-add_action('init', 'devabu_post_type_company_logo');
+add_action('init', '_themename_post_type_company_logo');

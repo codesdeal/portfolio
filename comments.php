@@ -15,7 +15,7 @@ if( post_password_required() ) {
                         '%1$s Reply to "%2$s"', 
                         '%1$s Replies to "%2$s"', 
                         get_comments_number(), 
-                        'devabu' 
+                        '_themename' 
                     )),
                     number_format_i18n( get_comments_number() ),
                     get_the_title()
@@ -29,7 +29,7 @@ if( post_password_required() ) {
                     'short_ping' => false,
                     'avatar_size' => 50,
                     'reply_text' => 'hello',
-                    'callback' => 'devabu_comment_callback'
+                    'callback' => '_themename_comment_callback'
                 ) );
             ?>
         </ul>
@@ -38,7 +38,7 @@ if( post_password_required() ) {
 
     <?php
     if( ! comments_open() && get_comments_number()) { ?>
-        <p class="c-comments__closed"><?php esc_html_e( 'Comments are closed for this post', 'devabu' ) ?></p>
+        <p class="c-comments__closed"><?php esc_html_e( 'Comments are closed for this post', '_themename' ) ?></p>
     <?php } ?>
 
     <?php comment_form() ?>

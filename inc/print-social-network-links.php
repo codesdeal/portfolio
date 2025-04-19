@@ -12,7 +12,7 @@ function print_social_network_links() {
     echo '<div class="social-icons">';
 
     foreach ( $social_networks as $network ) {
-        $url = get_theme_mod( "devabu_{$network}_link" );
+        $url = get_theme_mod( "_themename_{$network}_link" );
         if ( ! empty( $url ) ) {
             echo '<a href="' . esc_url( $url ) . '" target="_blank" rel="noopener noreferrer">';
             echo '<i class="fa-brands fa-' . esc_attr( $network ) . '"></i>';

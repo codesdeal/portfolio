@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <?php
-    $layout = devabu_meta( get_the_ID(), '_devabu_post_layout', 'full' );
+    $layout = _themename_meta( get_the_ID(), '__themename_post_layout', 'full' );
     $sidebar = is_active_sidebar( 'primary-sidebar' );
     if($layout === 'sidebar' && !$sidebar) {
         $layout = 'full';
@@ -15,7 +15,7 @@
                         <?php the_post();?>
                         <?php get_template_part('template-parts/post/content'); ?>
                         <?php 
-                            if(get_theme_mod('devabu_display_author_info', true)){
+                            if(get_theme_mod('_themename_display_author_info', true)){
                                 get_template_part('template-parts/single/author'); 
                             }                            
                         ?>

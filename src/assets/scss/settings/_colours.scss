@@ -1,0 +1,21 @@
+$alert-colour: #f03;
+$warning-colour: yellow;
+$success-colour: green;
+
+$grey: #ccc;
+$light-grey: #f1f1f1;
+$medium-grey: #050505;
+$dark-grey: #333333;
+
+:root {
+    --wp--preset--color--primary: #0d9dc9;
+    --wp--preset--color--secondary: rgba(0, 38, 58, 1);;
+    --wp--preset--color--button: #a95f40;
+    --wp--preset--color--button-hover: #94795d;
+    --wp--preset--color--white: #fff;
+    --wp--preset--color--black: #000;
+    --wp--preset--color--gray: #f7f6f5;
+    --wp--preset--color--lightgray: #d7d2cb;
+    --wp--preset--color--lightblue: #8db9ca;
+    --wp--preset--color--deepblue: #141b4d;
+}

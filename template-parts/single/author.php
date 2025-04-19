@@ -1,5 +1,5 @@
 <div class="c-post-author u-margin-bottom-20">
-    <h2 class="u-screen-reader-text"><?php esc_attr_e( 'About The Author', 'devabu' ); ?></h2>
+    <h2 class="u-screen-reader-text"><?php esc_attr_e( 'About The Author', '_themename' ); ?></h2>
     <?php
         $author_id = get_the_author_meta( 'ID' );
         $author_posts = get_the_author_posts();
@@ -25,7 +25,7 @@
             <a href="<?php echo esc_url( $author_posts_url ); ?>">
                 <?php
                 printf(
-                    esc_html( _n( '%s post', '%s posts', $author_posts, 'devabu' ) ),
+                    esc_html( _n( '%s post', '%s posts', $author_posts, '_themename' ) ),
                     number_format_i18n( $author_posts )
                 );
                 ?>
