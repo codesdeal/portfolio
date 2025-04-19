@@ -1,7 +1,7 @@
 <?php
 /**
  * Registers a custom post type for Portfolio items.
- * @package devabu
+ * @package _themename
  */
 function _themename_post_type_portfolio() {
     $labels = array(

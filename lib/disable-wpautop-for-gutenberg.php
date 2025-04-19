@@ -2,7 +2,7 @@
 /**
  * Disable wpautop for Gutenberg blocks.
  *
- * @package devabu
+ * @package _themename
  */
 /**
  * Disables wpautop to remove empty p tags in rendered Gutenberg blocks.

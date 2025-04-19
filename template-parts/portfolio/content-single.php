@@ -1,7 +1,7 @@
 <?php
 /**
  * Template part for displaying single portfolio items
- * @package devabu
+ * @package _themename
  */
 ?>
 

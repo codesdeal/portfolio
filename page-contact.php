@@ -5,7 +5,7 @@
  *
  * The template for displaying the Contact info.
  *
- * @package devabu
+ * @package _themename
  */
 
 get_header();

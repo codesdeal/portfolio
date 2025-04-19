@@ -1,7 +1,7 @@
 <?php
 /**
  * Template part for displaying portfolio grid
- * @package devabu
+ * @package _themename
  */
 ?>
 

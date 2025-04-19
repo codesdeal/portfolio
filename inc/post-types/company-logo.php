@@ -2,7 +2,7 @@
 /**
  * The function registers a custom post type for slider images in WordPress with specific labels,
  * settings, and capabilities.
- *  @package devabu
+ *  @package _themename
  */
 function _themename_post_type_company_logo() {
     $labels = array(

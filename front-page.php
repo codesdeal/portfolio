@@ -5,7 +5,7 @@
  * 
  * The template for displaying the front page.
  *
- * @package devabu
+ * @package _themename
  */
 
 get_header(); ?>

@@ -2,7 +2,7 @@
 /**
  * Display the social links saved in the customizer.
  *
- * @package devabu
+ * @package _themename
  */
 
 

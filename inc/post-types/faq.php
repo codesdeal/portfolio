@@ -1,7 +1,7 @@
 <?php
 /**
  * Registers a custom post type for FAQs.
- * @package devabu
+ * @package _themename
  */
 function _themename_post_type_faq() {
     $labels = array(
