@@ -1,13 +1,24 @@
 <?php
 function _themename_assets() {
     wp_enqueue_style('devabu-style', get_stylesheet_uri(), array(), '1.0.0', 'all');
-
     wp_enqueue_style('devabu-stylesheet', get_template_directory_uri() . '/dist/assets/css/bundle.css', array(), '1.0.0', 'all');
-
+    
+    // Load FontAwesome from CDN
+    wp_enqueue_style('fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css', array(), '6.7.2', 'all');
+    
+    // Add Swiper CSS
+    wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), '11.0.0', 'all');
+    
     wp_enqueue_script('jquery');
-    wp_enqueue_script('devabu-scripts', get_template_directory_uri() . '/dist/assets/js/bundle.js', array('jquery'), '1.0.0', true);
 
-    // Add error logging nonce
+    // Add Isotope JS before our bundle with jQuery as dependency
+    wp_enqueue_script('isotope-js', 'https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js', array('jquery'), '3.0.6', false);
+    
+    // Add Swiper JS before our bundle
+    wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), '11.0.0', true);
+    
+    wp_enqueue_script('devabu-scripts', get_template_directory_uri() . '/dist/assets/js/bundle.js', array('jquery', 'swiper-js', 'isotope-js'), '1.0.0', true);
+
     wp_localize_script('devabu-scripts', '_themename', array(
         'nonce' => wp_create_nonce('theme_error_logging'),
         'ajaxurl' => admin_url('admin-ajax.php')

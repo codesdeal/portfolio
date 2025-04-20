@@ -1,16 +1,15 @@
 $alert-colour: #f03;
 $warning-colour: yellow;
 $success-colour: green;
-
 $grey: #ccc;
 $light-grey: #f1f1f1;
 $medium-grey: #050505;
-$dark-grey: #333333;
+$dark-grey: #333;
 
 // Base colors with improved contrast ratios
 :root {
     // Primary colors
-    --color-primary: #0066cc;
+    --color-primary: #06c;
     --color-primary-rgb: 0, 102, 204;
     --color-primary-dark: #004c99;
     --color-primary-light: #1a75d1;
@@ -18,15 +17,15 @@ $dark-grey: #333333;
     // Text colors (WCAG AAA compliant)
     --color-text: #1a1a1a;
     --color-text-light: #595959;
-    --color-text-inverse: #ffffff;
+    --color-text-inverse: #fff;
 
     // Background colors
-    --color-background: #ffffff;
+    --color-background: #fff;
     --color-background-alt: #f5f5f5;
-    --color-background-dark: #333333;
+    --color-background-dark: #333;
 
     // UI colors
-    --color-border: #cccccc;
+    --color-border: #ccc;
     --color-disabled: #e6e6e6;
     --color-error: #d93025;
     --color-error-rgb: 217, 48, 37;
@@ -45,18 +44,15 @@ $dark-grey: #333333;
 
 // Dark theme colors
 [data-theme="dark"] {
-    --color-text: #ffffff;
+    --color-text: #fff;
     --color-text-light: #b3b3b3;
     --color-text-inverse: #1a1a1a;
-    
     --color-background: #1a1a1a;
-    --color-background-alt: #333333;
-    --color-background-dark: #000000;
-    
+    --color-background-alt: #333;
+    --color-background-dark: #000;
     --color-border: #404040;
     --color-disabled: #404040;
-    
     --color-link: #66b3ff;
-    --color-link-hover: #99ccff;
-    --color-link-visited: #cc99ff;
+    --color-link-hover: #9cf;
+    --color-link-visited: #c9f;
 }

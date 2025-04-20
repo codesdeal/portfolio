@@ -47,6 +47,10 @@
                             <?php endwhile; 
                             wp_reset_postdata(); ?>
                         </div>
+                        <!-- Add Navigation -->
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                        <!-- Add Pagination -->
                         <div class="swiper-pagination"></div>
                     <?php else : ?>
                         <p><?php _e('No testimonials found.', '_themename'); ?></p>

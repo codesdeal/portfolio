@@ -1,11 +1,13 @@
 .c-sidebar-widget {
-    background-color: #ffffff;
+    background-color: #fff;
     border: 1px solid $grey;
-    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 20px 5px rgb(0 0 0 / 5%);
     padding: rem-calc(20);
+
     h5 {
         font-weight: 600;
     }
+
     > ul {
         list-style: none;
         margin: 0;
@@ -17,6 +19,7 @@
         list-style: none;
         margin: 0;
     }
+
     &--light {
         a, p {
             opacity: 0.9;
@@ -25,11 +28,12 @@
             border-bottom: none;
         }
     }
+
     .tagcloud {
         a {
             font-size: rem-calc(14) !important;
             background-color: var(--wp--preset--color--primary);
-            color: #ffffff;
+            color: #fff;
             opacity: 1;
             padding: rem-calc(5 10);
             margin-bottom: rem-calc(5);

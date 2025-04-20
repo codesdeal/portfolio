@@ -7,7 +7,7 @@
         border-radius: 10px;
         padding: 2rem;
         margin: 1rem 0.5rem;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 20px rgb(0 0 0 / 10%);
         text-align: center;
         transition: transform 0.3s ease;
         height: 100%;
@@ -22,7 +22,7 @@
             margin-bottom: 1.5rem;
             position: relative;
             
-            &:before {
+            &::before {
                 content: '\201C';
                 font-size: 4rem;
                 color: var(--wp--preset--color--primary);

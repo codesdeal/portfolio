@@ -54,3 +54,4 @@ composer.lock
 *.tmp
 *.temp
 .cache/
+tests/

@@ -2,27 +2,23 @@
 @import './settings/colours';
 @import './settings/break-points';
 @import './settings/typography';
-
 @import './tools/units';
 @import './tools/breakpoint';
-
 @import './generic/normalize';
 @import './generic/box-sizing';
-
 @import './elements/general';
 @import './elements/typography';
 @import './elements/form';
 @import './elements/print';
 
 $fa-font-path: "../webfonts";
+
 @import "../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
 @import "../../../node_modules/@fortawesome/fontawesome-free/scss/solid";
 @import "../../../node_modules/@fortawesome/fontawesome-free/scss/regular";
 @import "../../../node_modules/@fortawesome/fontawesome-free/scss/brands";
-
 @import './objects/wp';
 @import './objects/grid';
-
 @import './components/post';
 @import './components/page';
 @import './components/widget';
@@ -33,9 +29,11 @@ $fa-font-path: "../webfonts";
 @import './components/nav-links';
 @import './components/portfolio';
 @import './components/testimonial';
-
 @import './utils/helpers';
 @import './utils/flex';
 @import './utils/margins';
 @import "./../../../node_modules/bootstrap/scss/bootstrap";
-@import '../../../node_modules/aos/src/sass/aos.scss';
+@import '../../../node_modules/aos/src/sass/aos';
+
+// @import "~swiper/swiper";
+// @import "~swiper/modules/navigation/navigation";

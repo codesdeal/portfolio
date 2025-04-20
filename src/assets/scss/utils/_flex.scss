@@ -54,6 +54,7 @@ $align: (
         order: $i;
     }
 }
+
 @each $size, $width in $breakpoints {
     @include breakpoint($size) {
         @for $i from 0 through 12 {

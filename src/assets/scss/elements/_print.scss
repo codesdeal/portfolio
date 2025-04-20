@@ -27,14 +27,14 @@
     }
 
     // Show URLs after links
-    a[href]:after {
+    a[href]::after {
         content: " (" attr(href) ")";
         font-size: 90%;
     }
 
     // Don't show URLs for internal or hash links
-    a[href^="#"]:after,
-    a[href^="javascript:"]:after {
+    a[href^="#"]::after,
+    a[href^="javascript:"]::after {
         content: "";
     }
 

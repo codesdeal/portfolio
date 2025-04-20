@@ -3,6 +3,7 @@ button, input, optgroup, select, textarea {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 select {
     box-sizing: border-box;
     width: 100%;
@@ -11,8 +12,8 @@ select {
     border: 1px solid $grey;
     transition: border-color 0.35s;
 }
-button, input[type=submit] {
-    padding: 0;
+
+button, input[type="submit"] {
     appearance: none;
     border: 0;
     background: transparent;
@@ -22,12 +23,15 @@ button, input[type=submit] {
     color: #fff;
     padding: rem-calc(10 15);
     font-weight: 600;
+
     &:focus, &:hover {
         background-color: var(--wp--preset--color--deepblue);
     }
 }
+
 fieldset {
     border: 2px solid $grey;
+
     legend {
         padding: 0 rem-calc(10px);
         font-weight: bold;
@@ -52,14 +56,14 @@ select {
     &:focus {
         outline: none;
         border-color: var(--color-primary);
-        box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.2);
+        box-shadow: 0 0 0 3px rgb(var(--color-primary-rgb) 0.2);
     }
 
     &.is-invalid {
         border-color: var(--color-error);
         
         &:focus {
-            box-shadow: 0 0 0 3px rgba(var(--color-error-rgb), 0.2);
+            box-shadow: 0 0 0 3px rgb(var(--color-error-rgb) 0.2);
         }
     }
 
@@ -111,7 +115,7 @@ label {
         height: auto;
 
         &:focus ~ .custom-control__label::before {
-            box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.2);
+            box-shadow: 0 0 0 3px rgb(var(--color-primary-rgb) 0.2);
         }
 
         &:checked ~ .custom-control__label::after {

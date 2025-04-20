@@ -22,7 +22,7 @@
     }
   
     // Turn 0rem into 0
-    @if $value == 0rem {
+    @if $value == 0 {
       $value: 0;
     }
   

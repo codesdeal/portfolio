@@ -4,23 +4,33 @@
         justify-content: center;
         gap: 1rem;
         list-style: none;
-        margin: 0;
+        margin: 0 0 2rem;
         padding: 0;
+        flex-wrap: wrap;
+
+        li {
+            margin: 0;
+            padding: 0;
+        }
 
         button {
-            background: none;
-            border: 2px solid var(--wp--preset--color--primary);
-            color: var(--wp--preset--color--primary);
-            padding: 0.5rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--wp--preset--color--primary, #0d9dc9);
+            color: var(--wp--preset--color--primary, #0d9dc9);
+            padding: 0.75rem 1.5rem;
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: var(--wp--preset--size--text--block--16);
+            font-size: var(--wp--preset--size--text--block--16, 16px);
+            font-weight: 500;
+            text-transform: capitalize;
+            outline: none;
 
             &:hover,
             &.active {
-                background: var(--wp--preset--color--primary);
-                color: var(--wp--preset--color--white);
+                background: var(--wp--preset--color--primary, #0d9dc9);
+                color: var(--wp--preset--color--white, #fff);
+                transform: translateY(-2px);
             }
         }
     }
@@ -30,7 +40,7 @@
             border: none;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgb(0 0 0 / 10%);
 
             .card-img {
                 position: relative;
@@ -42,7 +52,7 @@
 
                 .card-img-overlay {
                     opacity: 0;
-                    background: rgba(var(--wp--preset--color--primary), 0.9);
+                    background: rgb(var(--wp--preset--color--primary) 0.9);
                     display: flex;
                     align-items: center;
                     justify-content: center;

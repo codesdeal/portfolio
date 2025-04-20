@@ -42,20 +42,9 @@
                 <?php } ?>
             </div>
             <div class="c-navigation">
-                <nav class="header-nav" role="navigation" aria-label="<?php esc_attr_e('Main Navigation', '_themename'); ?>">
-                    <button class="c-navigation__toggle" aria-expanded="false" aria-controls="primary-menu">
-                        <span class="screen-reader-text"><?php esc_html_e('Toggle menu', '_themename'); ?></span>
-                        <span class="c-navigation__toggle-icon"></span>
-                    </button>
-                    <?php wp_nav_menu(array(
-                        'theme_location' => 'main-menu',
-                        'container' => false,
-                        'menu_class' => 'header-nav__list',
-                        'menu_id' => 'primary-menu',
-                        'fallback_cb' => false,
-                        'items_wrap' => '<ul id="%1$s" class="%2$s" role="menubar">%3$s</ul>'
-                    )); ?>
-                </nav>
+            <nav class="header-nav" role="navigation" aria-label="<?php esc_html_e( 'Main Navigation', '_themename' ) ?>">
+                <?php wp_nav_menu( array('theme_location' => 'main-menu') ) ?>
+            </nav>
             </div>
         </div>
     </div>
