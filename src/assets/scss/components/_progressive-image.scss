@@ -1,0 +1,78 @@
+.c-progressive-image {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-background-alt);
+
+    &__placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        filter: blur(20px);
+        transform: scale(1.1);
+        transition: opacity 0.3s ease-out;
+        pointer-events: none;
+        background-size: cover;
+        background-position: center;
+    }
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+        opacity: 0;
+        transition: opacity 0.5s ease-in;
+    }
+
+    &.is-loaded {
+        img {
+            opacity: 1;
+        }
+
+        .c-progressive-image__placeholder {
+            opacity: 0;
+        }
+    }
+
+    // Different aspect ratio variants
+    &--square {
+        padding-bottom: 100%;
+    }
+
+    &--landscape {
+        padding-bottom: 56.25%; // 16:9 ratio
+    }
+
+    &--portrait {
+        padding-bottom: 150%;
+    }
+
+    // Loading animation
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+        transform: translateX(-100%);
+        animation: shimmer 1.5s infinite;
+    }
+
+    &.is-loaded::after {
+        display: none;
+    }
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}

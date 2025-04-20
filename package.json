@@ -7,7 +7,14 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build --prod",
-    "bundle": "gulp bundle --prod"
+    "bundle": "gulp bundle --prod",
+    "lint:js": "eslint 'src/assets/js/**/*.js'",
+    "lint:scss": "stylelint 'src/assets/scss/**/*.scss'",
+    "lint": "npm run lint:js && npm run lint:scss",
+    "prepare": "husky install",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -31,31 +38,78 @@
     "@babel/core": "^7.26.10",
     "@babel/preset-env": "^7.26.9",
     "@fortawesome/fontawesome-free": "^6.7.2",
+    "@fullhuman/postcss-purgecss": "^7.0.2",
+    "@testing-library/dom": "^9.3.4",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@wordpress/eslint-plugin": "^17.11.0",
     "aos": "^2.3.4",
+    "autoprefixer": "^10.4.21",
+    "babel-jest": "^29.7.0",
     "babel-loader": "^10.0.0",
     "bootstrap": "^5.3.5",
     "browser-sync": "^3.0.3",
+    "critical": "^4.0.1",
     "css-loader": "^7.1.2",
+    "cssnano": "5.1.0",
     "del": "^8.0.0",
+    "eslint": "^8.57.0",
     "gulp": "^5.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-if": "^3.0.0",
     "gulp-imagemin": "^7.1.0",
+    "gulp-postcss": "^9.0.1",
     "gulp-replace": "^1.1.4",
     "gulp-sass": "^6.0.1",
     "gulp-sourcemaps": "^3.0.0",
-    "gulp-uglify": "^3.0.2",
+    "gulp-terser": "^2.1.0",
+    "gulp-webp": "^4.0.1",
     "gulp-zip": "^6.1.0",
+    "husky": "^9.0.11",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "lint-staged": "^15.2.2",
+    "postcss": "^8.5.3",
     "sass": "^1.86.0",
     "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "terser": "^5.39.0",
+    "terser-webpack-plugin": "^5.3.14",
     "vinyl-named": "^1.1.0",
     "webpack-stream": "^7.0.0"
   },
   "dependencies": {
     "isotope-layout": "^3.0.6",
+    "jquery": "^3.7.1",
     "normalize.css": "^8.0.1",
     "swiper": "^11.2.6",
     "yargs": "^17.7.2"
+  },
+  "lint-staged": {
+    "src/assets/js/**/*.js": [
+      "eslint --fix"
+    ],
+    "src/assets/scss/**/*.scss": [
+      "stylelint --fix"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/js/setupTests.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "<rootDir>/tests/js/__mocks__/styleMock.js",
+      "\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/tests/js/__mocks__/fileMock.js"
+    },
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/vendor/"
+    ],
+    "collectCoverageFrom": [
+      "src/assets/js/**/*.js",
+      "!**/node_modules/**"
+    ]
   }
 }

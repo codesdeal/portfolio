@@ -1,0 +1,46 @@
+.c-offline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+
+    &__content {
+        max-width: 600px;
+        padding: 2rem;
+    }
+
+    &__title {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--color-text);
+    }
+
+    &__message {
+        font-size: 1.125rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        color: var(--color-text-light);
+    }
+
+    &__actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+
+        .c-button {
+            min-width: 120px;
+        }
+    }
+
+    // Dark mode adjustments
+    [data-theme="dark"] & {
+        &__title {
+            color: var(--color-text);
+        }
+
+        &__message {
+            color: var(--color-text-light);
+        }
+    }
+}

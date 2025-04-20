@@ -1,0 +1,11 @@
+{
+    "extends": "stylelint-config-standard-scss",
+    "rules": {
+        "scss/no-global-function-names": null,
+        "lightness-notation": null,
+        "keyframes-name-pattern": null,
+        "custom-property-pattern": null,
+        "scss/at-rule-conditional-no-parentheses": null,
+        "selector-class-pattern": null
+    }
+}

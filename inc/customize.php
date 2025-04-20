@@ -291,6 +291,64 @@ function _themename_customize_register($wp_customize) {
         'section' => '_themename_single_blog_options'
     ));
 
+    /*################## Push Notifications Settings ###############*/
+    $wp_customize->add_section('_themename_push_notifications', array(
+        'title' => __('Push Notifications', '_themename'),
+        'description' => __('Configure push notification settings', '_themename'),
+        'priority' => 160
+    ));
+
+    // Enable/Disable Push Notifications
+    $wp_customize->add_setting('_themename_enable_push_notifications', array(
+        'default' => true,
+        'sanitize_callback' => 'wp_validate_boolean'
+    ));
+
+    $wp_customize->add_control('_themename_enable_push_notifications', array(
+        'type' => 'checkbox',
+        'section' => '_themename_push_notifications',
+        'label' => __('Enable Push Notifications', '_themename'),
+        'description' => __('Allow users to subscribe to push notifications', '_themename')
+    ));
+
+    // Notification Types
+    $wp_customize->add_setting('_themename_notification_types', array(
+        'default' => array('posts', 'comments'),
+        'sanitize_callback' => function($input) {
+            return is_array($input) ? array_map('sanitize_text_field', $input) : array();
+        }
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control(
+        $wp_customize,
+        '_themename_notification_types',
+        array(
+            'type' => 'select',
+            'section' => '_themename_push_notifications',
+            'label' => __('Send Notifications For', '_themename'),
+            'description' => __('Choose which events trigger push notifications', '_themename'),
+            'choices' => array(
+                'posts' => __('New Posts', '_themename'),
+                'comments' => __('New Comments', '_themename'),
+                'products' => __('New Products', '_themename')
+            ),
+            'multiple' => true
+        )
+    ));
+
+    // Notification Prompt Text
+    $wp_customize->add_setting('_themename_notification_prompt', array(
+        'default' => __('Would you like to receive notifications for new content?', '_themename'),
+        'sanitize_callback' => 'sanitize_text_field'
+    ));
+
+    $wp_customize->add_control('_themename_notification_prompt', array(
+        'type' => 'text',
+        'section' => '_themename_push_notifications',
+        'label' => __('Notification Prompt', '_themename'),
+        'description' => __('Text shown when asking users to enable notifications', '_themename')
+    ));
+
     function _themename_sanitize_checkbox($checked) {
         return ( ( isset($checked) && $checked == true) ? true : false );
     }

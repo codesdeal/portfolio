@@ -108,3 +108,57 @@ if ( ! function_exists( '_themename_sanitize_media' ) ) {
 	}
 }
 
+if(!function_exists('_themename_verify_security')) {
+    function _themename_verify_security($nonce_name, $action_name, $redirect_on_fail = true) {
+        if (
+            !isset($_REQUEST['_wpnonce']) 
+            || !wp_verify_nonce($_REQUEST['_wpnonce'], $nonce_name)
+            || !current_user_can('edit_posts')
+        ) {
+            if ($redirect_on_fail) {
+                wp_safe_redirect(home_url());
+                exit;
+            }
+            return false;
+        }
+        return true;
+    }
+}
+
+if (!function_exists('_themename_responsive_image')) {
+    function _themename_responsive_image($image_id, $size = 'full', $additional_attributes = []) {
+        if (!$image_id) return;
+
+        $default_attributes = [
+            'loading' => 'lazy',
+            'decoding' => 'async'
+        ];
+
+        $attributes = array_merge($default_attributes, $additional_attributes);
+        
+        $img_src = wp_get_attachment_image_url($image_id, $size);
+        $img_srcset = wp_get_attachment_image_srcset($image_id, $size);
+        $img_sizes = wp_get_attachment_image_sizes($image_id, $size);
+        $alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
+
+        return sprintf(
+            '<img src="%s" srcset="%s" sizes="%s" alt="%s" %s>',
+            esc_url($img_src),
+            esc_attr($img_srcset),
+            esc_attr($img_sizes),
+            esc_attr($alt),
+            _themename_prepare_html_attributes($attributes)
+        );
+    }
+}
+
+if (!function_exists('_themename_prepare_html_attributes')) {
+    function _themename_prepare_html_attributes($attributes) {
+        $html = '';
+        foreach ($attributes as $name => $value) {
+            $html .= sprintf(' %s="%s"', esc_attr($name), esc_attr($value));
+        }
+        return $html;
+    }
+}
+

@@ -1,37 +1,90 @@
 @media print {
+    // Hide unnecessary elements
+    .c-header__navigation,
+    .c-footer,
+    .c-sidebar,
+    .c-navigation__toggle,
+    .c-post__navigation,
+    .c-comments,
+    button:not([type="submit"]) {
+        display: none !important;
+    }
+
+    // Reset background colors and shadows
     * {
         background: transparent !important;
         color: #000 !important;
         box-shadow: none !important;
         text-shadow: none !important;
     }
+
+    // Optimize text for printing
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+        padding: 0.4cm;
+        margin: 0;
+    }
+
+    // Show URLs after links
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 90%;
+    }
+
+    // Don't show URLs for internal or hash links
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    // Page breaks
+    h1, h2, h3 {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+
     p, h2, h3 {
         orphans: 3;
-        widows: 3; 
-    }        
-    h2, h3 {
-        page-break-after: avoid;   
-    }  
-    a[href]:after { 
-        content: ' (' attr(href) ')'; 
+        widows: 3;
     }
-    a[href^='javascript:']:after, a[href^='#']:after { 
-        content: ''; 
+
+    // Print header styling
+    .c-header {
+        margin-bottom: 2cm;
+        border-bottom: 1pt solid #000;
     }
+
+    // Table optimizations
+    table {
+        border-collapse: collapse !important;
+    }
+
+    table td,
+    table th {
+        background-color: #fff !important;
+        border: 1pt solid #000 !important;
+    }
+
     pre,
     blockquote {
         border: 1px solid #333;
         page-break-inside: avoid;
     }
+
     thead { 
         display: table-header-group; 
     }
+
     tr, img { 
         page-break-inside: avoid; 
     }
-    img {
-        max-width: 100% !important; 
-    }
+
     @page { 
         margin: 0.5cm; 
     }

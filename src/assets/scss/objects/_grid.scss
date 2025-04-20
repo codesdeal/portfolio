@@ -1,36 +1,128 @@
+// Variables
 $columns: 12;
 $gutter: 20;
+$half-gutter: $gutter / 2;
 
+// Container
 .o-container {
     max-width: rem-calc($global-width);
     margin-left: auto;
     margin-right: auto;
-    padding-left: rem-calc($gutter/2);
-    padding-right: rem-calc($gutter/2);
+    padding-left: rem-calc($half-gutter);
+    padding-right: rem-calc($half-gutter);
 }
+
+// Flex Grid Row
 .o-row {
     display: flex;
-    margin-right: - rem-calc($gutter/2);
-    margin-left: - rem-calc($gutter/2);
     flex-wrap: wrap;
+    margin-left: -rem-calc($half-gutter);
+    margin-right: -rem-calc($half-gutter);
+
     &__column {
-        width: calc(100% - #{rem-calc($gutter)});
         flex: 0 0 auto;
-        margin-left: rem-calc($gutter/2);
-        margin-right: rem-calc($gutter/2);
+        margin-left: rem-calc($half-gutter);
+        margin-right: rem-calc($half-gutter);
+        width: calc(100% - #{rem-calc($gutter)});
     }
+
+    // Column Spans
     @for $i from 1 through $columns {
         &__column--span-#{$i} {
-            width: calc(#{$i/$columns*100 + '%'} - #{rem-calc($gutter)});
+            width: calc(#{percentage($i / $columns)} - #{rem-calc($gutter)});
         }
     }
+
+    // Responsive Column Spans
     @each $size, $width in $breakpoints {
         @include breakpoint($size) {
             @for $i from 1 through $columns {
                 &__column--span-#{$i}\@#{$size} {
-                    width: calc(#{$i/$columns*100 + '%'} - #{rem-calc($gutter)});
+                    width: calc(#{percentage($i / $columns)} - #{rem-calc($gutter)});
                 }
             }
+        }
+    }
+}
+
+// CSS Grid with Flexbox fallback
+.o-grid {
+    --grid-columns: 12;
+    --grid-gap: 2rem;
+
+    // Fallback: Flexbox
+    display: flex;
+    flex-wrap: wrap;
+    margin: calc(var(--grid-gap) * -0.5);
+
+    @supports (display: grid) {
+        display: grid;
+        grid-template-columns: repeat(var(--grid-columns), 1fr);
+        gap: var(--grid-gap);
+        margin: 0;
+    }
+
+    &__item {
+        // Fallback: Flexbox
+        padding: calc(var(--grid-gap) * 0.5);
+        width: 100%;
+
+        @supports (display: grid) {
+            padding: 0;
+            width: auto;
+        }
+
+        // Responsive spans
+        @each $breakpoint, $width in $breakpoints {
+            @include breakpoint($breakpoint) {
+                @for $i from 1 through $columns {
+                    &--span-#{$i}\@#{$breakpoint} {
+                        @supports (display: grid) {
+                            grid-column: span #{$i};
+                            width: auto;
+                        }
+
+                        // Fallback width in Flexbox — note: no Sass math with var()
+                        width: calc(100% * #{$i} / var(--grid-columns));
+                    }
+                }
+            }
+        }
+    }
+
+    // Grid alignments
+    &--center {
+        justify-content: center;
+        align-items: center;
+    }
+
+    &--start {
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    &--end {
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+
+    // Grid gap modifiers
+    &--no-gap {
+        --grid-gap: 0;
+    }
+
+    &--small-gap {
+        --grid-gap: 1rem;
+    }
+
+    &--large-gap {
+        --grid-gap: 3rem;
+    }
+
+    // Auto-fit cards/grid
+    &--auto-fit {
+        @supports (display: grid) {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         }
     }
 }

@@ -1,180 +1,291 @@
+// ─── Core Modules ────────────────────────────────────────────
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// ─── Gulp & Utilities ────────────────────────────────────────
 import gulp from 'gulp';
-import { hideBin } from 'yargs/helpers';
+import gulpif from 'gulp-if';
+import { deleteAsync as del } from 'del';
+
+// ─── CLI Args ────────────────────────────────────────────────
 import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
+
+// ─── Styles ──────────────────────────────────────────────────
 import * as sass from 'sass';
 import gulpSass from 'gulp-sass';
-import cleanCSS from 'gulp-clean-css';
-import gulpif from "gulp-if";
+import postcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
+import purgecss from '@fullhuman/postcss-purgecss';
 import sourcemaps from 'gulp-sourcemaps';
-import imagemin from 'gulp-imagemin';
-import { deleteAsync as del } from 'del';
+
+// ─── Scripts ─────────────────────────────────────────────────
 import webpack from 'webpack-stream';
-import uglify from 'gulp-uglify';
 import named from 'vinyl-named';
-import browserSync from 'browser-sync';
+import TerserPlugin from 'terser-webpack-plugin';
+
+// ─── Assets ──────────────────────────────────────────────────
+import imagemin from 'gulp-imagemin';
+import webp from 'gulp-webp';
 import zip from 'gulp-zip';
 import replace from 'gulp-replace';
-import { readFileSync } from 'fs';
-const info = JSON.parse(readFileSync('./package.json'));
 
+// ─── Server ──────────────────────────────────────────────────
+import browserSync from 'browser-sync';
+
+// ─── Environment Setup ───────────────────────────────────────
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const argv = yargs(hideBin(process.argv)).argv;
+const production = !!argv.prod;
+const info = JSON.parse(readFileSync('./package.json'));
 const browser = browserSync.create();
 const sassCompiler = gulpSass(sass);
-const argv = yargs(hideBin(process.argv)).argv;
-const production = argv.prod;
 
+// ─── PostCSS Plugins ─────────────────────────────────────────
+const postcssPlugins = [
+  autoprefixer({ grid: true }),
+  production &&
+    purgecss({
+      content: [
+        './**/*.php',
+        'src/assets/js/**/*.{js,ts}',
+        'src/assets/scss/**/*.scss',
+      ],
+      safelist: {
+        standard: [/^wp-/, /^has-/, /^is-/, /^align/, /^theme-/],
+        deep: [/^editor-/, /^block-/],
+        greedy: [/^modal/, /^slick/],
+      },
+      defaultExtractor: content => content.match(/\w+[-/:.]?(?<!:)/g) || [],
+    }),
+].filter(Boolean);
+
+// ─── Paths ───────────────────────────────────────────────────
 const paths = {
   styles: {
-    src: ['src/assets/scss/bundle.scss', 'src/assets/scss/admin.scss', 'src/assets/scss/editor.scss'],
-    dest: 'dist/assets/css'
+    src: [
+      'src/assets/scss/bundle.scss',
+      'src/assets/scss/admin.scss',
+      'src/assets/scss/editor.scss',
+    ],
+    dest: 'dist/assets/css',
+  },
+  scripts: {
+    src: [
+      'src/assets/js/bundle.js',
+      'src/assets/js/admin.js',
+      'src/assets/js/customize-preview.js',
+      'src/assets/js/service-worker.js', // Add service worker to build
+    ],
+    dest: 'dist/assets/js',
   },
   images: {
     src: 'src/assets/images/**/*.{jpg,jpeg,png,svg,gif}',
-    dest: 'dist/assets/images'
+    dest: 'dist/assets/images',
   },
   fonts: {
-    src: ['node_modules/@fortawesome/fontawesome-free/webfonts/*'],
-    dest: 'dist/assets/webfonts'
-  },
-  scripts: {
-    src: ['src/assets/js/bundle.js', 'src/assets/js/admin.js', 'src/assets/js/customize-preview.js'],
-    dest: 'dist/assets/js'
-  },
-  plugins: {
-    src: ['../../plugins/devabu-metaboxes/packaged/*'],
-    dest: ['lib/plugins']
+    src: 'node_modules/@fortawesome/fontawesome-free/webfonts/*',
+    dest: 'dist/assets/webfonts',
   },
   other: {
-    src: ['src/assets/**/*', '!src/assets/{images,js,scss}', '!src/assets/{images,js,scss}/**/*'],
-    dest: 'dist/assets'
+    src: [
+      'src/assets/**/*',
+      '!src/assets/{images,js,scss}',
+      '!src/assets/{images,js,scss}/**/*',
+    ],
+    dest: 'dist/assets',
   },
   package: {
-    src: ['**/*', '!.vscode', '!node_modules{,/**}', '!packaged{,/**}', '!src{,/**}', '!.babelrc', '!.gitignore', '!gulpfile.babel.js', '!package-lock.json', '!package.json', '!yarn.lock', '!yarn-error.log', '!.git{,/**}', '!.DS_Store'],
-    dest: 'packaged'
-  }
+    src: [
+      '**/*',
+      '!.vscode',
+      '!node_modules{,/**}',
+      '!packaged{,/**}',
+      '!src{,/**}',
+      '!.babelrc',
+      '!.gitignore',
+      '!gulpfile.*',
+      '!package*.json',
+      '!composer.*',
+    ],
+    dest: 'packaged',
+  },
 };
 
-// Start browser-sync server
+// ─── Tasks ───────────────────────────────────────────────────
+
+// Styles
+export const styles = () =>
+  gulp
+    .src(paths.styles.src, { sourcemaps: !production })
+    .pipe(
+      sassCompiler({
+        outputStyle: production ? 'compressed' : 'expanded',
+        includePaths: ['node_modules'],
+      }).on('error', function (err) {
+        sassCompiler.logError.call(this, err);
+        this.emit('end');
+        browser.notify('Sass Compilation Error');
+      })
+    )
+    .pipe(postcss(postcssPlugins))
+    .pipe(gulpif(!production, sourcemaps.write('.')))
+    .pipe(gulp.dest(paths.styles.dest))
+    .pipe(browser.stream({ match: '**/*.css' }));
+
+// Scripts
+export const scripts = () =>
+  gulp
+    .src(paths.scripts.src)
+    .pipe(named())
+    .pipe(
+		webpack({
+		  mode: production ? 'production' : 'development',
+		  devtool: production ? false : 'eval-source-map',
+		  cache: {
+			type: 'filesystem',
+			buildDependencies: { config: [__filename] },
+		  },
+		  optimization: {
+			moduleIds: 'deterministic',
+			runtimeChunk: 'single',
+			splitChunks: {
+			  cacheGroups: {
+				vendor: {
+				  test: /[\\/]node_modules[\\/]/,
+				  name: 'vendors',
+				  chunks: 'all',
+				},
+			  },
+			},
+			minimize: production,
+			minimizer: [
+			  new TerserPlugin({
+				terserOptions: {
+				  format: { comments: false },
+				  compress: {
+					drop_console: production,
+					drop_debugger: production,
+				  },
+				},
+				extractComments: false,
+			  }),
+			],
+		  },
+		  module: {
+			rules: [
+			  {
+				test: /\.[jt]sx?$/,
+				exclude: /node_modules/,
+				use: {
+				  loader: 'babel-loader',
+				  options: {
+					presets: [
+					  [
+						'@babel/preset-env',
+						{
+						  useBuiltIns: 'usage',
+						  corejs: 3,
+						  targets: '> 0.25%, not dead',
+						},
+					  ],
+					  '@babel/preset-typescript',
+					],
+					plugins: ['@babel/plugin-transform-runtime'],
+				  },
+				},
+			  },
+			  {
+				test: /\.s[ac]ss$/i,
+				use: ['style-loader', 'css-loader', 'sass-loader'],
+			  },
+			  {
+				test: /\.css$/i,
+				use: ['style-loader', 'css-loader'],
+			  },
+			  {
+				test: /\.(png|jpe?g|gif|svg|webp)$/i,
+				type: 'asset/resource',
+			  },
+			  {
+				test: /\.(woff2?|eot|ttf|otf)$/i,
+				type: 'asset/resource',
+			  },
+			],
+		  },
+		  resolve: {
+			extensions: ['.ts', '.tsx', '.js', '.jsx'],
+		  },
+		})
+	  )	  
+    .pipe(gulp.dest(paths.scripts.dest));
+
+// Images
+export const images = gulp.parallel(
+  function optimizeImages() {
+    return gulp
+      .src(paths.images.src)
+      .pipe(
+        gulpif(
+          production,
+          imagemin([
+            imagemin.mozjpeg({ quality: 80, progressive: true }),
+            imagemin.optipng({ optimizationLevel: 5 }),
+            imagemin.svgo({ plugins: [{ removeViewBox: false }, { cleanupIDs: false }] }),
+          ])
+        )
+      )
+      .pipe(gulp.dest(paths.images.dest));
+  },
+  function convertWebP() {
+    return gulp
+      .src(paths.images.src)
+      .pipe(webp({ quality: 80 }))
+      .pipe(gulp.dest(paths.images.dest));
+  }
+);
+
+// Copy
+export const copy = () => gulp.src(paths.other.src).pipe(gulp.dest(paths.other.dest));
+export const copyFonts = () => gulp.src(paths.fonts.src).pipe(gulp.dest(paths.fonts.dest));
+export const clean = () => del(['dist']);
+
+// Watch
+export const watch = () => {
+  gulp.watch('src/assets/scss/**/*.scss', styles);
+  gulp.watch('src/assets/js/**/*.js', gulp.series(scripts));
+  gulp.watch('**/*.php');
+  gulp.watch(paths.images.src, gulp.series(images));
+  gulp.watch(paths.other.src, gulp.series(copy));
+};
+
+// Server
 export const serve = (done) => {
   browser.init({
     proxy: 'https://profile.test/',
     https: {
-      key: "/etc/ssl/localhost/localhost.key",
-      cert: "/etc/ssl/localhost/localhost.crt",
+      key: '/etc/ssl/localhost/localhost.key',
+      cert: '/etc/ssl/localhost/localhost.crt',
     },
-    open: true,
     notify: false,
-    // https: true
   });
   done();
 };
 
-// Reload browser
-export const reload = (done) => {
-  browser.reload();
-  done();
-};
+// Build & Dev
+export const build = gulp.series(clean, gulp.parallel(styles, scripts, images, copy, copyFonts));
+export const dev = gulp.series(build, serve, watch);
 
-// Clean dist folder
-export const clean = () => del(['dist']);
-
-// Compile SCSS to CSS
-export const styles = () => {
-  return gulp.src(paths.styles.src, { allowEmpty: true })
-    .pipe(gulpif(!production, sourcemaps.init()))
-    .pipe(sassCompiler().on('error', sassCompiler.logError))
-    .pipe(gulpif(production, cleanCSS({ compatibility: 'ie8' })))
-    .pipe(gulpif(!production, sourcemaps.write()))
-    .pipe(gulp.dest(paths.styles.dest))
-    .pipe(browser.stream());
-};
-
-// fonts
-export const copyFonts = () => {
-  return gulp.src(paths.fonts.src)
-    .pipe(gulp.dest(paths.fonts.dest));
-};
-
-// Optimize images
-export const images = () => {
-  return gulp.src(paths.images.src)
-    .pipe(gulpif(production, imagemin()))
-    .pipe(gulp.dest(paths.images.dest));
-};
-
-// Copy other assets
-export const copy = () => {
-  return gulp.src(paths.other.src)
-    .pipe(gulp.dest(paths.other.dest));
-};
-
-// Copy Plugins
-export const copyPlugins = () => {
-  return gulp.src(paths.plugins.src)
-    .pipe(gulp.dest(paths.plugins.dest));
-};
-
-// Compile and bundle JavaScript
-export const scripts = () => {
-  return gulp.src(paths.scripts.src)
-    .pipe(named())
-    .pipe(webpack({
-      mode: production ? 'production' : 'development',
-      devtool: !production ? 'inline-source-map' : false,
-      externals: { jquery: 'jQuery' },
-      module: {
-        rules: [{
-          test: /\.js$/,
-          use: {
-            loader: 'babel-loader',
-            options: { presets: ['@babel/preset-env'] }
-          }
-        },
-        {
-          test: /\.scss$/,
-          use: [
-            'style-loader',
-            'css-loader',
-            'sass-loader'
-          ]
-        },
-        {
-          test: /\.css$/,
-          use: ['style-loader', 'css-loader']
-        }]
-      },
-      output: { filename: '[name].js' }
-    }))
-    .pipe(gulpif(production, uglify()))
-    .pipe(gulp.dest(paths.scripts.dest))
-    .pipe(browser.stream());
-};
-
-// Watch for file changes
-export const watch = () => {
-  gulp.watch('src/assets/scss/**/*.scss', styles);
-  gulp.watch('src/assets/js/**/*.js', gulp.series(scripts, reload));
-  gulp.watch('**/*.php', reload);
-  gulp.watch(paths.images.src, gulp.series(images, reload));
-  gulp.watch(paths.other.src, gulp.series(copy, reload));
-};
-
-export const compress = () => {
-  return gulp.src(paths.package.src)
-    .pipe(gulpif(
-      (file) => file.relative.split('.').pop() !== 'zip',
-      replace(/devabu/g, info.name)
-    ))
+// Bundle Theme
+export const bundle = gulp.series(build, () =>
+  gulp
+    .src(paths.package.src)
+    .pipe(replace('_themename', info.name))
     .pipe(zip(`${info.name}.zip`))
-    .pipe(gulp.dest(paths.package.dest));
-};
+    .pipe(gulp.dest(paths.package.dest))
+);
 
-// Development Task
-export const dev = gulp.series(clean, gulp.parallel(styles, copyFonts, scripts, images, copy), serve, watch);
-
-// Build Task
-export const build = gulp.series(clean, gulp.parallel(styles, copyFonts, scripts, images, copy, copyPlugins));
-
-// Bundle Task
-export const bundle = gulp.series(build, compress);
 
 export default dev;

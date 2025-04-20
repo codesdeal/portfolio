@@ -6,6 +6,12 @@ function _themename_assets() {
 
     wp_enqueue_script('jquery');
     wp_enqueue_script('devabu-scripts', get_template_directory_uri() . '/dist/assets/js/bundle.js', array('jquery'), '1.0.0', true);
+
+    // Add error logging nonce
+    wp_localize_script('devabu-scripts', '_themename', array(
+        'nonce' => wp_create_nonce('theme_error_logging'),
+        'ajaxurl' => admin_url('admin-ajax.php')
+    ));
 }
 add_action('wp_enqueue_scripts', '_themename_assets');
 
