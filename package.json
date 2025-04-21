@@ -54,6 +54,8 @@
     "cssnano": "^6.0.1",
     "del": "^7.0.0",
     "eslint": "^8.41.0",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
     "file-loader": "^6.2.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
@@ -73,6 +75,7 @@
     "lint-staged": "^13.2.2",
     "mini-css-extract-plugin": "^2.9.2",
     "postcss": "^8.4.23",
+    "prettier": "^3.5.3",
     "sass": "^1.86.3",
     "sass-loader": "^13.3.3",
     "style-loader": "^3.3.4",
@@ -96,13 +99,10 @@
   },
   "lint-staged": {
     "src/assets/js/**/*.js": [
-      "eslint --fix"
+      "node --max-old-space-size=4096 ./node_modules/.bin/eslint --fix --max-warnings=0"
     ],
     "src/assets/scss/**/*.scss": [
-      "stylelint --fix"
-    ],
-    "*.{js,jsx}": [
-      "eslint --max-warnings=0 --fix"
+      "stylelint --fix --max-warnings=0"
     ]
   },
   "jest": {

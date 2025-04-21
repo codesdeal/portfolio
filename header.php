@@ -29,24 +29,34 @@
 <?php wp_body_open(); ?>
 <a class="u-skip-link" href="#content"><?php esc_attr_e('Skip to content', '_themename'); ?></a>
 <header role="banner">
-    <div class="c-header">
-        <div class="o-container u-flex u-align-justify u-align-middle">
-            <div class="c-header__logo">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <div class="navbar-brand">
                 <?php if(has_custom_logo()) {
                     the_custom_logo();
                 } else { ?>
-                    <a class="c-header__blogname" href="<?php echo esc_url(home_url('/')); ?>">
-                        <span class="screen-reader-text"><?php esc_html_e('Home', '_themename'); ?></span>
+                    <a href="<?php echo esc_url(home_url('/')); ?>">
+                        <span class="visually-hidden"><?php esc_html_e('Home', '_themename'); ?></span>
                         <?php esc_html(bloginfo('name')); ?>
                     </a>
                 <?php } ?>
             </div>
-            <div class="c-navigation">
-            <nav class="header-nav" role="navigation" aria-label="<?php esc_html_e( 'Main Navigation', '_themename' ) ?>">
-                <?php wp_nav_menu( array('theme_location' => 'main-menu') ) ?>
-            </nav>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavigation" aria-controls="primaryNavigation" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', '_themename'); ?>">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="primaryNavigation" class="collapse navbar-collapse">
+                <?php 
+                wp_nav_menu(array(
+                    'theme_location' => 'main-menu',
+                    'container' => false,
+                    'menu_class' => 'navbar-nav ms-auto',
+                    'walker' => new _themename_Mega_Menu_Walker()
+                ));
+                ?>
             </div>
         </div>
-    </div>
+    </nav>
 </header>
 <div id="content" class="site-content" role="main">

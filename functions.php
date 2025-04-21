@@ -18,6 +18,9 @@ function _themename_include_all_files() {
 }
 _themename_include_all_files();
 
+// Include the Mega Menu Walker
+require_once get_template_directory() . '/inc/class-mega-menu-walker.php';
+
 add_action( 'init_language_setup', function() {
     load_theme_textdomain( '_themename', get_template_directory() . '/languages' );
 } );

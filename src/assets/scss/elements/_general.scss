@@ -19,16 +19,10 @@ img {
     vertical-align: middle;
     max-width: 100%;
     height: auto;
-    interpolation-mode: bicubic;
 }
 
 :focus {
-    outline: 2px solid var(--wp--preset--color--primary);
-}
-
-::selection {
-    background: var(--wp--preset--color--primary);
-    color: #fff;
+    outline: none;
 }
 
 ::selection {
