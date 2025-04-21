@@ -35,7 +35,6 @@ wp-config.php
 /build/
 .env
 .env.*
-package-lock.json
 composer.lock
 
 # Testing
