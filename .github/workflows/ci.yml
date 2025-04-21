@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: [7.4, 8.0, 8.1]
-        node: [16, 18]
+        php: [7.4, 8.0, 8.1, 8.2, 8.3]
+        node: [18, 20]
 
     steps:
     - uses: actions/checkout@v3
@@ -23,6 +23,17 @@ jobs:
         php-version: ${{ matrix.php }}
         extensions: dom, curl, libxml, mbstring, zip, fileinfo
         coverage: xdebug
+
+    - name: Get Composer Cache Directory
+      id: composer-cache
+      run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+    - name: Cache Composer Dependencies
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -36,11 +47,23 @@ jobs:
     - name: Install Node.js Dependencies
       run: npm ci
 
-    - name: Run PHP Tests
-      run: composer test
+    - name: Run PHP Tests with Coverage
+      run: composer test -- --coverage-clover coverage.xml
 
-    - name: Run JavaScript Tests
-      run: npm test
+    - name: Upload PHP Coverage
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        flags: php
+
+    - name: Run JavaScript Tests with Coverage
+      run: npm test -- --coverage
+
+    - name: Upload JS Coverage
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage/lcov.info
+        flags: javascript
 
     - name: Run Linting
       run: |
@@ -53,9 +76,24 @@ jobs:
 
     - name: Check Build
       run: |
-        if [ -d "dist" ]; then
-          echo "Build successful"
-        else
-          echo "Build failed"
+        if [ ! -d "dist" ]; then
+          echo "Build failed - dist directory not found"
           exit 1
         fi
+        
+        # Check for essential built files
+        for file in dist/js/main.js dist/css/style.css; do
+          if [ ! -f "$file" ]; then
+            echo "Missing expected build output: $file"
+            exit 1
+          fi
+        done
+        
+        echo "Build verification successful"
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: theme-build
+        path: dist/
+        retention-days: 7
