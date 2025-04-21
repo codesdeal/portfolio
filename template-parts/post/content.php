@@ -1,4 +1,4 @@
-<article <?php post_class('c-post u-margin-bottom-20'); ?> >
+<article <?php post_class('c-post u-margin-bottom-20 u-margin-top-60'); ?> >
     <div class="c-post__inner">
         <?php if ( has_post_thumbnail() ) : ?>
             <div class="c-post__thumbnail">

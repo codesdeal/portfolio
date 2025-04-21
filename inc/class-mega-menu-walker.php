@@ -11,9 +11,9 @@ class _themename_Mega_Menu_Walker extends Walker_Nav_Menu {
             $submenu_class .= ' c-mega-menu';
         }
 
-        // Add submenu position class for 3rd level and deeper
-        if ($depth >= 2) {
-            $submenu_class .= ' dropdown-submenu dropdown-menu-end';
+        // Position submenus properly for nested levels
+        if ($depth >= 1) {
+            $submenu_class .= ' dropdown-submenu';
         }
         
         $output .= "\n$indent<ul class=\"$submenu_class\">\n";
@@ -26,14 +26,14 @@ class _themename_Mega_Menu_Walker extends Walker_Nav_Menu {
         // Store mega menu classes for later use
         $this->mega_menu_classes = $classes;
         
-        // Add nav-item class for all items
-        $classes[] = 'nav-item';
-        
-        // Add dropdown class for items with children at any level
-        if ($args->walker->has_children) {
-            $classes[] = 'dropdown';
-            if ($depth >= 1) {
-                $classes[] = 'dropend'; // Makes submenus appear to the right on desktop
+        if ($depth === 0) {
+            $classes[] = 'nav-item';
+            if ($args->walker->has_children) {
+                $classes[] = 'dropdown';
+            }
+        } else {
+            if ($args->walker->has_children) {
+                $classes[] = 'dropdown-item-submenu';
             }
         }
         
@@ -48,12 +48,22 @@ class _themename_Mega_Menu_Walker extends Walker_Nav_Menu {
         $atts['rel']    = !empty($item->xfn) ? $item->xfn : '';
         $atts['href']   = !empty($item->url) ? $item->url : '';
         
-        // Add appropriate Bootstrap classes for all levels
-        $atts['class'] = $depth === 0 ? 'nav-link' : 'dropdown-item';
-        if ($args->walker->has_children) {
-            $atts['class'] .= ' dropdown-toggle';
-            $atts['data-bs-toggle'] = 'dropdown';
-            $atts['aria-expanded'] = 'false';
+        if ($depth === 0) {
+            $atts['class'] = 'nav-link';
+            if ($args->walker->has_children) {
+                $atts['class'] .= ' dropdown-toggle';
+            }
+        } else {
+            $atts['class'] = 'dropdown-item';
+            if ($args->walker->has_children) {
+                $atts['class'] .= ' dropdown-toggle';
+            }
+        }
+        
+        // Add active class if current item
+        if (in_array('current-menu-item', $classes)) {
+            $atts['class'] .= ' active';
+            $atts['aria-current'] = 'page';
         }
         
         $attributes = '';

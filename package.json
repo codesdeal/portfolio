@@ -42,6 +42,7 @@
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "@testing-library/dom": "^9.3.0",
     "@testing-library/jest-dom": "^5.16.5",
+    "@types/swiper": "^5.4.3",
     "@wordpress/eslint-plugin": "^14.0.0",
     "aos": "^2.3.4",
     "autoprefixer": "^10.4.14",

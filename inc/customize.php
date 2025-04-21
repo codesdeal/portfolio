@@ -34,28 +34,63 @@ function _themename_customize_register($wp_customize) {
         'priority' => 20
     ));
 
-    // Banner setting
+    // Banner video setting
 	$wp_customize->add_setting(
 		'_themename_home_banner_media',
 			[
 			'capability'        => 'edit_theme_options',
-			'default'           => esc_url(get_template_directory_uri() . '/src/assets/images/HomePageVideo3.mp4'),
+			'default'           => '',
 			'sanitize_callback' => '_themename_sanitize_media',
 			]
 	);
 
-	// Banner control - Use WP_Customize_Image_Control directly
+	// Banner video control
 	$wp_customize->add_control(
-		new \WP_Customize_Image_Control(
+		new \WP_Customize_Media_Control(
 			$wp_customize,
 			'_themename_home_banner_media',
 			[
-			'label'       => __('Upload Home Banner', '_themename'),
-			'description' => __('The Banner will be displayed in the Home Main Banner.', '_themename' ),
+			'label'       => __('Upload Home Banner Video', '_themename'),
+			'description' => __('The video will be displayed in the Home Main Banner.', '_themename' ),
 			'section'     => '_themename_home_banner',
+			'mime_type'   => 'video',
 			]
 		)
 	);
+
+    // Banner fallback image setting
+    $wp_customize->add_setting(
+        '_themename_home_banner_image',
+        array(
+            'default'           => '',
+            'capability'        => 'edit_theme_options',
+            'transport'         => 'refresh',
+            'sanitize_callback' => 'absint'
+        )
+    );
+
+    // Banner fallback image control
+    $wp_customize->add_control(
+        new WP_Customize_Media_Control(
+            $wp_customize,
+            '_themename_home_banner_image',
+            array(
+                'label'       => __('Upload Fallback Image', '_themename'),
+                'description' => __('This image will be displayed when no video is set.', '_themename'),
+                'section'     => '_themename_home_banner',
+                'mime_type'   => 'image',
+                'button_labels' => array(
+                    'select'       => __('Select Image', '_themename'),
+                    'change'       => __('Change Image', '_themename'),
+                    'remove'       => __('Remove', '_themename'),
+                    'default'      => __('Default', '_themename'),
+                    'placeholder'  => __('No image selected', '_themename'),
+                    'frame_title'  => __('Select Image', '_themename'),
+                    'frame_button' => __('Choose Image', '_themename'),
+                )
+            )
+        )
+    );
 
     // Register Banner Text setting.
 	$wp_customize->add_setting(

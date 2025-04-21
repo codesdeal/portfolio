@@ -1,0 +1,199 @@
+/* Navigation styles */
+.desktop-menu {
+    .navbar-nav {
+        align-items: center;
+    }
+
+    .nav-item {
+        position: relative;
+    }
+
+    .nav-link {
+        color: var(--wp--preset--color--secondary);
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            color: var(--wp--preset--color--primary);
+        }
+    }
+
+    .current-menu-item .nav-link {
+        color: var(--wp--preset--color--primary);
+    }
+
+    /* Handle dropdown menus in desktop view */
+    .menu-item-has-children {
+        position: relative;
+    }
+
+    .sub-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 200px;
+        background: #fff;
+        box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+        border-radius: 0.25rem;
+        padding: 0.5rem 0;
+        z-index: 1000;
+        display: none;
+
+        .menu-item {
+            padding: 0.25rem 1rem;
+        }
+
+        .nav-link {
+            padding: 0.5rem 0;
+            display: block;
+            width: 100%;
+        }
+    }
+
+    .menu-item-has-children:hover > .sub-menu {
+        display: block;
+    }
+}
+
+/* Dropdown menu base styles */
+.dropdown-menu {
+    margin: 0;
+    padding: 0.5rem 0;
+    border: 1px solid rgb(0 0 0 / 10%);
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    position: absolute;
+    z-index: 1000;
+    display: none;
+}
+
+.dropdown-item-submenu {
+    position: relative;
+
+    > .dropdown-menu {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        margin-top: -0.5rem;
+    }
+}
+
+/* Show dropdowns on hover and focus */
+.dropdown,
+.dropdown-item-submenu {
+    &:hover > .dropdown-menu,
+    &:focus-within > .dropdown-menu {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Desktop specific styles */
+@media (width >= 992px) {
+    .navbar-nav .dropdown-menu {
+        position: absolute !important;
+        top: 100%;
+        left: 0;
+        margin-top: 0;
+    }
+
+    .dropdown,
+    .dropdown-item-submenu > .dropdown-menu {
+        &:not(.position-checked) {
+            display: block !important;
+
+            &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                right: 0;
+                visibility: hidden;
+            }
+
+            &.need-invert {
+                left: auto;
+                right: 0;
+            }
+
+            visibility: visible;
+        }
+    }
+}
+
+/* RTL support */
+html[dir="rtl"] {
+    .dropdown-item-submenu > .dropdown-menu {
+        right: 100%;
+        left: auto;
+    }
+}
+
+/* Dropdown toggle icons */
+.nav-link.dropdown-toggle {
+    &::after {
+        display: inline-block;
+        margin-left: 0.255em;
+        vertical-align: 0.255em;
+        content: "";
+        border-top: 0.3em solid;
+        border-right: 0.3em solid transparent;
+        border-bottom: 0;
+        border-left: 0.3em solid transparent;
+    }
+}
+
+.dropdown-item.dropdown-toggle {
+    &::after {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        border-top: 0.3em solid transparent;
+        border-right: 0;
+        border-bottom: 0.3em solid transparent;
+        border-left: 0.3em solid;
+    }
+}
+
+/* Hover effects */
+.dropdown-item {
+    &:hover,
+    &:focus {
+        background-color: rgb(0 0 0 / 5%);
+        color: var(--wp--preset--color--primary);
+    }
+}
+
+/* Mobile adjustments */
+@media (width <= 991.98px) {
+    .dropdown-menu {
+        position: static !important;
+        border: none;
+        box-shadow: none;
+        margin-left: 1rem;
+    }
+
+    .dropdown-item-submenu > .dropdown-menu {
+        position: static;
+        margin-left: 1rem;
+    }
+
+    .dropdown-item.dropdown-toggle::after {
+        transform: rotate(90deg);
+        right: 0;
+    }
+
+    .navbar-toggler {
+        padding: 0.5rem;
+        border: none;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .offcanvas {
+        max-width: 300px;
+    }
+}

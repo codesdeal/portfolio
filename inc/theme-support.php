@@ -4,6 +4,7 @@ function _themename_theme_support() {
     // Core theme features
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
+    add_theme_support('custom-background');
     add_theme_support('html5', array(
         'search-form',
         'comment-list',
@@ -35,7 +36,6 @@ function _themename_theme_support() {
     add_theme_support('align-wide');
     add_theme_support('editor-styles');
     add_theme_support('wp-block-styles');
-    add_theme_support('responsive-embeds');
     add_editor_style('dist/assets/css/editor.css');
 
     // Performance optimizations

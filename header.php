@@ -28,35 +28,55 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <a class="u-skip-link" href="#content"><?php esc_attr_e('Skip to content', '_themename'); ?></a>
-<header role="banner">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <div class="navbar-brand">
-                <?php if(has_custom_logo()) {
-                    the_custom_logo();
-                } else { ?>
-                    <a href="<?php echo esc_url(home_url('/')); ?>">
-                        <span class="visually-hidden"><?php esc_html_e('Home', '_themename'); ?></span>
-                        <?php esc_html(bloginfo('name')); ?>
-                    </a>
-                <?php } ?>
-            </div>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavigation" aria-controls="primaryNavigation" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', '_themename'); ?>">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div id="primaryNavigation" class="collapse navbar-collapse">
-                <?php 
+<nav class="navbar bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
+            <?php bloginfo('name'); ?>
+        </a>
+        
+        <!-- Desktop Menu -->
+        <div class="desktop-menu d-none d-lg-block">
+            <?php
+            if (has_nav_menu('main-menu')) {
                 wp_nav_menu(array(
                     'theme_location' => 'main-menu',
-                    'container' => false,
-                    'menu_class' => 'navbar-nav ms-auto',
-                    'walker' => new _themename_Mega_Menu_Walker()
+                    'menu_class'     => 'navbar-nav d-flex flex-row gap-4',
+                    'container'      => false,
+                    'walker'         => new _themename_Mega_Menu_Walker(),
+                    'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>'
                 ));
+            }
+            ?>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Mobile Offcanvas Menu -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><?php bloginfo('name'); ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <?php
+                if (has_nav_menu('main-menu')) {
+                    wp_nav_menu(array(
+                        'theme_location' => 'main-menu',
+                        'menu_class'     => 'navbar-nav justify-content-end flex-grow-1 pe-3',
+                        'container'      => false,
+                        'walker'         => new _themename_Mega_Menu_Walker(),
+                        'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>'
+                    ));
+                }
                 ?>
             </div>
         </div>
-    </nav>
-</header>
-<div id="content" class="site-content" role="main">
+    </div>
+</nav>
+
+<div id="page" class="site">
+    <div id="content" class="site-content" role="main">

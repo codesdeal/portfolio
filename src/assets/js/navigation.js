@@ -45,6 +45,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Initialize mobile navigation
 	initMobileNavigation();
+
+	// Smart dropdown positioning
+	function checkDropdownPosition() {
+		const dropdowns = document.querySelectorAll('.dropdown-menu:not(.position-checked)');
+
+		dropdowns.forEach((dropdown) => {
+			const rect = dropdown.getBoundingClientRect();
+			const viewportWidth = window.innerWidth;
+
+			if (rect.right > viewportWidth) {
+				dropdown.classList.add('need-invert');
+			}
+
+			dropdown.classList.add('position-checked');
+		});
+	}
+
+	// Check positions when dropdowns are shown
+	document.querySelectorAll('.dropdown').forEach((dropdown) => {
+		dropdown.addEventListener('mouseenter', checkDropdownPosition);
+	});
+
+	// Also check on window resize
+	let resizeTimer;
+	window.addEventListener('resize', () => {
+		clearTimeout(resizeTimer);
+		document.querySelectorAll('.dropdown-menu').forEach((menu) => {
+			menu.classList.remove('position-checked', 'need-invert');
+		});
+		resizeTimer = setTimeout(checkDropdownPosition, 250);
+	});
 });
 
 function initMobileNavigation() {
