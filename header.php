@@ -30,9 +30,15 @@
 <a class="u-skip-link" href="#content"><?php esc_attr_e('Skip to content', '_themename'); ?></a>
 
 <nav class="navbar bg-body-tertiary fixed-top">
-    <div class="container-fluid">
+    <div class="container">
         <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
-            <?php bloginfo('name'); ?>
+            <?php
+                if (has_custom_logo()) {
+                    the_custom_logo();
+                } else {
+                    bloginfo('name');
+                }
+            ?>
         </a>
         
         <!-- Desktop Menu -->

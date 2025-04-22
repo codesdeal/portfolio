@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+	// Add device detection
+	const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+		navigator.userAgent
+	);
+	document.body.classList.toggle('is-mobile', isMobile);
+
 	// Handle dropend menus
 	const dropendMenus = document.querySelectorAll('.dropend .dropdown-toggle');
 
@@ -43,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	});
 
-	// Initialize mobile navigation
+	// Initialize mobile navigation with improved touch handling
 	initMobileNavigation();
 
 	// Smart dropdown positioning
@@ -80,49 +86,107 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initMobileNavigation() {
 	const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+	let touchStartY = 0;
+	let touchEndY = 0;
 
 	dropdownToggles.forEach((toggle) => {
+		const menuItem = toggle.closest('.menu-item-has-children');
+		const link = menuItem.querySelector('a');
+		let isTouch = false;
+
+		// Handle touch start
+		toggle.addEventListener(
+			'touchstart',
+			(e) => {
+				isTouch = true;
+				touchStartY = e.touches[0].clientY;
+			},
+			{ passive: true }
+		);
+
+		// Handle touch end
+		toggle.addEventListener('touchend', (e) => {
+			touchEndY = e.changedTouches[0].clientY;
+
+			// Only handle as click if it's not a scroll attempt
+			if (Math.abs(touchEndY - touchStartY) < 10) {
+				e.preventDefault();
+				handleToggleClick(toggle, menuItem);
+			}
+		});
+
+		// Handle regular clicks
 		toggle.addEventListener('click', (e) => {
 			e.preventDefault();
 			e.stopPropagation();
 
-			const menuItem = toggle.closest('.menu-item-has-children');
-			const wasExpanded = toggle.getAttribute('aria-expanded') === 'true';
-			const subMenu = menuItem.querySelector('.dropdown-menu');
-
-			// Close other open dropdowns at the same level
-			const siblingItems = menuItem.parentElement.children;
-			Array.from(siblingItems).forEach((sibling) => {
-				if (sibling !== menuItem && sibling.classList.contains('menu-item-has-children')) {
-					const siblingToggle = sibling.querySelector('.dropdown-toggle');
-					const siblingSubMenu = sibling.querySelector('.dropdown-menu');
-					if (siblingToggle && siblingSubMenu) {
-						siblingToggle.setAttribute('aria-expanded', 'false');
-						siblingSubMenu.classList.remove('show');
-						sibling.classList.remove('show');
-					}
-				}
-			});
-
-			// Toggle current dropdown
-			toggle.setAttribute('aria-expanded', !wasExpanded);
-			menuItem.classList.toggle('show');
-			if (subMenu) {
-				subMenu.classList.toggle('show');
+			// Only handle click if it's not triggered by touch
+			if (!isTouch) {
+				handleToggleClick(toggle, menuItem);
 			}
+			isTouch = false;
 		});
-	});
 
-	// Add touch event handling for better mobile experience
-	const menuItems = document.querySelectorAll('.menu-item-has-children');
-	menuItems.forEach((item) => {
-		const link = item.querySelector('a');
+		// Handle main menu link touches
 		if (link) {
 			link.addEventListener('touchend', (e) => {
-				if (!item.classList.contains('show')) {
+				const subMenu = menuItem.querySelector('.dropdown-menu');
+				if (subMenu && !menuItem.classList.contains('show')) {
 					e.preventDefault();
 				}
 			});
+		}
+	});
+
+	// Close dropdowns when clicking/touching outside
+	document.addEventListener('click', (e) => {
+		if (!e.target.closest('.menu-item-has-children')) {
+			closeAllDropdowns();
+		}
+	});
+
+	document.addEventListener('touchend', (e) => {
+		if (!e.target.closest('.menu-item-has-children')) {
+			closeAllDropdowns();
+		}
+	});
+}
+
+function handleToggleClick(toggle, menuItem) {
+	const wasExpanded = toggle.getAttribute('aria-expanded') === 'true';
+	const subMenu = menuItem.querySelector('.dropdown-menu');
+
+	// Close other open dropdowns at the same level
+	const siblingItems = menuItem.parentElement.children;
+	Array.from(siblingItems).forEach((sibling) => {
+		if (sibling !== menuItem && sibling.classList.contains('menu-item-has-children')) {
+			const siblingToggle = sibling.querySelector('.dropdown-toggle');
+			const siblingSubMenu = sibling.querySelector('.dropdown-menu');
+			if (siblingToggle && siblingSubMenu) {
+				siblingToggle.setAttribute('aria-expanded', 'false');
+				siblingSubMenu.classList.remove('show');
+				sibling.classList.remove('show');
+			}
+		}
+	});
+
+	// Toggle current dropdown
+	toggle.setAttribute('aria-expanded', !wasExpanded);
+	menuItem.classList.toggle('show');
+	if (subMenu) {
+		subMenu.classList.toggle('show');
+	}
+}
+
+function closeAllDropdowns() {
+	const openMenus = document.querySelectorAll('.menu-item-has-children.show');
+	openMenus.forEach((menu) => {
+		const toggle = menu.querySelector('.dropdown-toggle');
+		const subMenu = menu.querySelector('.dropdown-menu');
+		if (toggle && subMenu) {
+			toggle.setAttribute('aria-expanded', 'false');
+			subMenu.classList.remove('show');
+			menu.classList.remove('show');
 		}
 	});
 }
