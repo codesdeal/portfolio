@@ -25,16 +25,22 @@ require_once get_template_directory() . '/inc/class-mega-menu-walker.php';
 //     load_theme_textdomain( '_themename', get_template_directory() . '/languages' );
 // } );
 
+add_action('init', function(){
+    $mo = '_themename-'. determine_locale() . '.mo';
+    $path = get_template_directory(__FILE__) . 'languages/' .$mo ;
+    load_textdomain( '_themename', $path  );
+});
 
-add_action('init', function() {
-	global $l10n, $wp_textdomain_registry;
-	$domain = '_themename';
-	$locale = get_locale();
-	$wp_textdomain_registry->set($domain, $locale, get_template_directory() . '/languages');
-	if ( isset( $l10n[ $domain ] )) {
-	  unset( $l10n[ $domain ] );
-	}
-	load_theme_textdomain($domain, get_template_directory() . '/languages');
-  });
+
+// add_action('init', function() {
+// 	global $l10n, $wp_textdomain_registry;
+// 	$domain = '_themename';
+// 	$locale = get_locale();
+// 	$wp_textdomain_registry->set($domain, $locale, get_template_directory() . '/languages');
+// 	if ( isset( $l10n[ $domain ] )) {
+// 	  unset( $l10n[ $domain ] );
+// 	}
+// 	load_theme_textdomain($domain, get_template_directory() . '/languages');
+//   });
 
 ?>
