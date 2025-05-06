@@ -11,7 +11,8 @@ function _themename_customize_register($wp_customize) {
     ));
 
     /*################## General Settings ###############*/
-    $wp_customize->add_section('_themename_general_options', array(
+    
+   $wp_customize->add_section('_themename_general_options', array(
         'title' => esc_html__('General Options', '_themename'),
         'description' => esc_html__('You can change general options from here.', '_themename')
     ));
@@ -211,12 +212,12 @@ function _themename_customize_register($wp_customize) {
             
         }
     ));
-    
+
     // Footer Social Media Links
 	$wp_customize->add_section(
 		'_themename_social_links_section',
 		[
-			'title'       => esc_html__( 'Social Media', '_themename' ),
+			'title'       => esc_html__( 'Social URL & Footer Logo', '_themename' ),
 			'description' => esc_html__( 'Links here power the Social Media', '_themename' ),
 			'priority'    => 30,
 		]
@@ -242,6 +243,29 @@ function _themename_customize_register($wp_customize) {
 			]
 		);
 	}
+
+    // Footer Logo setting
+    $wp_customize->add_setting(
+        '_themename_footer_logo',
+            [
+            'capability'        => 'edit_theme_options',
+            'default'           => esc_url(get_template_directory_uri() . '/src/images/icon-192x192.png'),
+            'sanitize_callback' => '_themename_sanitize_media',
+            ]
+    );
+
+    // Footer Logo control - Use WP_Customize_Image_Control directly
+    $wp_customize->add_control(
+        new \WP_Customize_Image_Control(
+            $wp_customize,
+            '_themename_footer_logo',
+            [
+            'label'       => __('Upload Footer Logo', '_themename'),
+            'description' => __('The Footer Logo will be displayed in the footer.', '_themename' ),
+            'section'     => '_themename_social_links_section',
+            ]
+        )
+    );
 
     // Footer columns
     $wp_customize->add_section('_themename_footer_column_1', array(

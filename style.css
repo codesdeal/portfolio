@@ -358,6 +358,10 @@ body {
   width: 100px;
 }
 
+.social-buttons {
+  margin-top: 30px;
+}
+
 .footer-bottom-items p {
   display: flex;
   justify-content: center;
