@@ -348,10 +348,11 @@ body {
 .address {
   color: var(--wp--preset--color--white);
 }
-
+.navbar-brand a {
+  border-bottom: none !important;
+}
 .custom-logo-link {
   text-decoration: none;
-  border-bottom: none !important;
   margin-bottom: 1.5rem;
 }
 
