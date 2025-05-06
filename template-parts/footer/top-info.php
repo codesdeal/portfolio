@@ -6,7 +6,7 @@
                     <?php
                         $footer_logo = get_theme_mod('_themename_footer_logo');
                         if ( $footer_logo ) {
-                            echo '<a class="c-footer__logo" href="' . esc_url( home_url( '/' ) ) . '">';
+                            echo '<a class="custom-logo-link" href="' . esc_url( home_url( '/' ) ) . '">';
                             echo '<img src="' . esc_url( $footer_logo ) . '" alt="' . esc_attr( get_bloginfo('name') ) . '">';
                             echo '</a>';
                         } else {
