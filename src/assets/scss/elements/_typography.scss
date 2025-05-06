@@ -17,14 +17,14 @@ p {
 a {   
     line-height: inherit;
     cursor: pointer;
-    border-bottom: 1px solid;
+    border-bottom: none;
     text-decoration: none;
     color: var(--wp--preset--color--primary);
     word-break: break-all;
     word-break: break-word;
 
     &:visited {
-        border-bottom: 1px solid;
+        border-bottom: none;
     }
 
     &:hover {   
