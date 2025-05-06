@@ -37,7 +37,7 @@
                     $custom_logo_id = get_theme_mod('custom_logo');
                     $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
                     if ($logo) {
-                        echo '<span class="custom-logo-link"><img width="150" src="' . esc_url($logo[0]) . '" class="custom-logo" alt="" decoding="async" loading="lazy"></span>';
+                        echo '<span class="custom-logo-link"><img width="100" src="' . esc_url($logo[0]) . '" class="custom-logo" alt="" decoding="async" loading="lazy"></span>';
                     }
                 } else {
                     bloginfo('name');
