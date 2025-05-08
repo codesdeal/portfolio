@@ -12,7 +12,7 @@
             <div class="col-12">
                 
                 <!-- Section Title -->
-                <div class="title-sec" data-aos="fade-up">
+                <div class="title-sec">
                     <h2 class="section-title"><?php esc_html_e("Client's Feedback", '_themename'); ?></h2>
                 </div>
 
