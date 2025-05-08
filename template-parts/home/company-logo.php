@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="title-sec">
-                    <h2 class="section-title">Featured Clients</h2>                            
+                    <h2 class="section-title"><?php esc_html_e("Clients", '_themename'); ?></h2>                          
                 </div>
                 <div class="client-logo-sec">
                     <?php

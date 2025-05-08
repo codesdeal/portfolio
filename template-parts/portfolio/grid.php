@@ -7,6 +7,9 @@
 
 <section class="portfolio-grid section-gap">
     <div class="container">
+        <div class="title-sec">
+        <h2 class="section-title"><?php esc_html_e("Projects", '_themename'); ?></h2>                        
+        </div>
         <div class="portfolio-filters mb-5">
             <?php
             $terms = get_terms('project_type');

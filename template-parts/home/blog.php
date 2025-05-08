@@ -1,5 +1,5 @@
 <!-- blog post section-->
-<section id="flynn" class="section-gap">
+<section id="blog" class="testimonials-section section-gap">
     <div class="container">
         <div class="row g-4">
             <!-- Section Title -->
