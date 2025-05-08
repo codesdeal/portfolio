@@ -21,6 +21,10 @@
 
                 <div class="testimonials-slider swiper" data-aos="fade-up">
                     <?php if ( $testimonials->have_posts() ) : ?>
+                        <!-- Section Title -->
+                        <div class="title-sec">
+                            <h2 class="section-title"><?php esc_html_e("Client's Feedback", '_themename'); ?></h2>
+                        </div>
                         <div class="swiper-wrapper">
                             <?php while ( $testimonials->have_posts() ) : $testimonials->the_post(); ?>
                                 <div class="swiper-slide">
