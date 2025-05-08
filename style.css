@@ -272,8 +272,9 @@ body {
 .section-title {
   text-transform: uppercase;
   border-bottom: 3px solid var(--wp--preset--color--primary);
-  font-size: var(--wp--preset--size--text--block--45);
-  font-weight: 700;
+  font-size: var(--wp--preset--size--text--block--26);
+  font-weight: 600;
+  font-family: monospace;
   color: var(--wp--preset--color--secondary);
   width: fit-content;
 }

@@ -8,8 +8,8 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="top-title-sec" data-aos="fade-up">
-                    <?php echo get_theme_mod('_themename_testimonials_overview', ''); ?>
+                <div class="title-sec" data-aos="fade-up">
+                    <h2 class="section-title">Client's Feedback</h2>                            
                 </div>
                 
                 <div class="testimonials-slider swiper" data-aos="fade-up">

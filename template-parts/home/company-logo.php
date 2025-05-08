@@ -3,6 +3,9 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
+                <div class="title-sec">
+                    <h2 class="section-title">Featured Clients</h2>                            
+                </div>
                 <div class="client-logo-sec">
                     <?php
                     $company_logos = new WP_Query( array(
@@ -13,11 +16,6 @@
                     ) );
 
                     if ( $company_logos->have_posts() ) :
-                        ?>
-                        <div class="title-sec">
-                            <h2 class="section-title">My Clients</h2>                            
-                        </div>
-                        <?php
                         while ( $company_logos->have_posts() ) : $company_logos->the_post();
                             if ( has_post_thumbnail() ) {
                                 the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) );
