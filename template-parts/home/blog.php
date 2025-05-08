@@ -2,6 +2,10 @@
 <section id="flynn" class="section-gap">
     <div class="container">
         <div class="row g-4">
+            <!-- Section Title -->
+            <div class="title-sec">
+                <h2 class="section-title"><?php esc_html_e("Blog", '_themename'); ?></h2>
+            </div>
             <div class="top-title-sec">
                 <?php echo get_theme_mod( '_themename_home_blog_overview', '' ); ?>
             </div>
