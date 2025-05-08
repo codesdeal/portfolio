@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="img-sec">
+                <div class="client-logo-sec">
                     <?php
                     $company_logos = new WP_Query( array(
                         'post_type'      => 'company_logo',
@@ -15,7 +15,7 @@
                     if ( $company_logos->have_posts() ) :
                         ?>
                         <div class="top-title-sec">
-                            <?php the_title(); ?>
+                            <h2 class="section-title">Featured Clients</h2>                            
                         </div>
                         <?php
                         while ( $company_logos->have_posts() ) : $company_logos->the_post();
