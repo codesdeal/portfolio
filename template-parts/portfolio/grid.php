@@ -7,9 +7,6 @@
 
 <section class="portfolio-grid section-gap">
     <div class="container">
-        <div class="title-sec">
-        <h2 class="section-title"><?php esc_html_e("Projects", '_themename'); ?></h2>                        
-        </div>
         <div class="portfolio-filters mb-5">
             <?php
             $terms = get_terms('project_type');
@@ -26,10 +23,15 @@
         </div>
 
         <div class="row g-4 portfolio-items">
+            <div class="title-sec">
+                <h2 class="section-title"><?php esc_html_e("Projects", '_themename'); ?></h2>                        
+            </div>
             <?php
             $portfolio_query = new WP_Query([
                 'post_type' => 'portfolio',
                 'posts_per_page' => -1,
+                'orderby' => 'date',
+                'order' => 'ASC',
             ]);
 
             if ($portfolio_query->have_posts()) :
