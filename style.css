@@ -281,9 +281,8 @@ body {
   font-size: var(--wp--preset--size--text--block--18);
   font-weight: 300;
   color: var(--wp--preset--color--black);
-  margin: 15px 0;
   text-align: left;
-  padding: 15px 20px;
+  padding: 10px 20px;
   line-height: 1.5;
 }
 
