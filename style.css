@@ -260,6 +260,18 @@ body {
 
 /* ###An Operator section section */
 
+/* client section  */
+.section-title h2 {
+  text-transform: uppercase;
+  /* border-bottom: 3px solid var(--wp--preset--color--primary); */
+  font-size: var(--wp--preset--size--text--block--45);
+  font-weight: 700;
+  color: var(--wp--preset--color--secondary);
+  margin-top: 1.5rem;
+  width: fit-content;
+  display: block;
+}
+
 /* blog post section */
 .img-card {
   box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, .16);

@@ -14,8 +14,8 @@
 
                     if ( $company_logos->have_posts() ) :
                         ?>
-                        <div class="top-title-sec">
-                            <h2 class="section-title">Featured Clients</h2>                            
+                        <div class="title-sec">
+                            <h2 class="section-title">My Clients</h2>                            
                         </div>
                         <?php
                         while ( $company_logos->have_posts() ) : $company_logos->the_post();
