@@ -278,10 +278,23 @@ body {
 }
 
 .img-card p {
-  font-size: var(--wp--preset--size--text--block--16);
+  font-size: var(--wp--preset--size--text--block--18);
   font-weight: 300;
   color: var(--wp--preset--color--black);
   margin: 15px 0;
+  text-align: left;
+  padding: 0 20px;
+  line-height: 1.5;
+}
+
+.my-quote {
+  width: 100%;
+  float: left;
+  display: block;
+  border-left: 3px solid var(--wp--preset--color--primary);
+  text-align: left;
+  font-size: var(--wp--preset--size--text--block--26);
+  font-weight: 400;
 }
 
 .img-card a {
