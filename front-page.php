@@ -14,21 +14,17 @@ get_header(); ?>
     <?php get_template_part('template-parts/home/hero'); ?>
     <!-- ###hero section -->
 
-    <!-- cp block -->
-    <?php get_template_part('template-parts/home/links-after-banner'); ?>
-    <!-- ###cp block -->
-
-    <!-- home features section -->
-    <?php get_template_part('template-parts/home/features'); ?>
-    <!-- ###home features section -->
+    <!-- featured clients section -->
+    <?php get_template_part('template-parts/home/company-logo'); ?>
+    <!-- ###featured clients section -->
 
     <!-- testimonials section -->
     <?php get_template_part('template-parts/home/testimonials'); ?>
     <!-- ###testimonials section -->
 
-    <!-- home features section -->
+    <!-- home portfolio section -->
     <?php get_template_part('template-parts/portfolio/grid'); ?>
-    <!-- ###home features section -->
+    <!-- ###home portfolio section -->
 
     <!-- home blog section -->
     <?php get_template_part('template-parts/home/blog'); ?>
