@@ -1,61 +1,74 @@
 <?php
 /**
  * Template part for displaying testimonials
+ * 
  * @package _themename
  */
 ?>
+
 <section id="testimonials" class="testimonials-section section-gap">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="title-sec" data-aos="fade-up">
-                    <h2 class="section-title">Client's Feedback</h2>                            
-                </div>
                 
-                <div class="testimonials-slider swiper" data-aos="fade-up">
-                    <?php
-                    $testimonials = new WP_Query([
-                        'post_type' => 'testimonial',
-                        'posts_per_page' => -1,
-                        'orderby' => 'date',
-                        'order' => 'DESC',
-                    ]);
+                <!-- Section Title -->
+                <div class="title-sec" data-aos="fade-up">
+                    <h2 class="section-title"><?php esc_html_e("Client's Feedback", '_themename'); ?></h2>
+                </div>
 
-                    if ($testimonials->have_posts()) : ?>
+                <?php
+                $testimonials = new WP_Query([
+                    'post_type'      => 'testimonial',
+                    'posts_per_page' => -1,
+                    'orderby'        => 'date',
+                    'order'          => 'DESC',
+                ]);
+                ?>
+
+                <div class="testimonials-slider swiper" data-aos="fade-up">
+                    <?php if ( $testimonials->have_posts() ) : ?>
                         <div class="swiper-wrapper">
-                            <?php while ($testimonials->have_posts()) : $testimonials->the_post(); ?>
+                            <?php while ( $testimonials->have_posts() ) : $testimonials->the_post(); ?>
                                 <div class="swiper-slide">
                                     <div class="testimonial-card">
+                                        
                                         <div class="testimonial-content">
                                             <?php the_content(); ?>
                                         </div>
-                                        <?php if (has_post_thumbnail()) : ?>
+
+                                        <?php if ( has_post_thumbnail() ) : ?>
                                             <div class="testimonial-author-img">
                                                 <?php the_post_thumbnail('thumbnail', ['class' => 'rounded-circle']); ?>
                                             </div>
                                         <?php endif; ?>
+
                                         <div class="testimonial-author">
                                             <h4><?php the_title(); ?></h4>
-                                            <?php 
-                                            $position = get_post_meta(get_the_ID(), '_testimonial_position', true);
-                                            if ($position) : ?>
-                                                <p><?php echo esc_html($position); ?></p>
+                                            <?php
+                                            $position = get_post_meta( get_the_ID(), '_testimonial_position', true );
+                                            if ( $position ) :
+                                            ?>
+                                                <p><?php echo esc_html( $position ); ?></p>
                                             <?php endif; ?>
                                         </div>
+
                                     </div>
                                 </div>
-                            <?php endwhile; 
-                            wp_reset_postdata(); ?>
+                            <?php endwhile; ?>
                         </div>
-                        <!-- Add Navigation -->
+
+                        <!-- Swiper Navigation -->
                         <div class="swiper-button-prev"></div>
                         <div class="swiper-button-next"></div>
-                        <!-- Add Pagination -->
                         <div class="swiper-pagination"></div>
+
+                        <?php wp_reset_postdata(); ?>
+
                     <?php else : ?>
-                        <p><?php _e('No testimonials found.', '_themename'); ?></p>
+                        <p><?php esc_html_e('No testimonials found.', '_themename'); ?></p>
                     <?php endif; ?>
                 </div>
+
             </div>
         </div>
     </div>
