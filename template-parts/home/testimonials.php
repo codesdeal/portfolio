@@ -10,19 +10,13 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                
-                <!-- Section Title -->
-                <div class="title-sec">
-                    <h2 class="section-title"><?php esc_html_e("Client's Feedback", '_themename'); ?></h2>
-                </div>
-
                 <?php
-                $testimonials = new WP_Query([
-                    'post_type'      => 'testimonial',
-                    'posts_per_page' => -1,
-                    'orderby'        => 'date',
-                    'order'          => 'DESC',
-                ]);
+                    $testimonials = new WP_Query([
+                        'post_type'      => 'testimonial',
+                        'posts_per_page' => -1,
+                        'orderby'        => 'date',
+                        'order'          => 'DESC',
+                    ]);
                 ?>
 
                 <div class="testimonials-slider swiper" data-aos="fade-up">
