@@ -298,6 +298,10 @@ body {
   padding-left: 10px;
 }
 
+.img-card strong {
+  padding-bottom: 20px;
+}
+
 .img-card a {
   color: var(--wp--preset--color--primary);
   font-weight: 500;
