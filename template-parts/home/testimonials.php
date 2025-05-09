@@ -25,6 +25,7 @@
                         <div class="title-sec">
                             <h2 class="section-title"><?php esc_html_e("Client's Remarks", "_themename"); ?></h2>
                         </div>
+                        <?php echo get_theme_mod('_themename_testimonials_overview', ''); ?>
                         <div class="swiper-wrapper">
                             <?php while ( $testimonials->have_posts() ) : $testimonials->the_post(); ?>
                                 <div class="swiper-slide">
