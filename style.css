@@ -186,8 +186,11 @@ body {
 }
 
 .top-title-sec {
-  margin-top: 0;
-  margin-bottom: 2rem;
+    font-size: var(--wp--preset--size--text--block--18);
+    font-weight: 300;
+    color: var(--wp--preset--color--black);
+    text-align: left;
+    line-height: 1.5;
 }
 
 .top-title-sec h3 {
@@ -262,11 +265,12 @@ body {
 
 /* client section  */
 .title-sec {
-  display: block;
-  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  margin: 2rem 0;
   text-align: center;
-  margin-top: 2rem;
 }
 
 .section-title {
@@ -276,7 +280,6 @@ body {
   font-weight: 600;
   font-family: monospace;
   color: var(--wp--preset--color--secondary);
-  width: fit-content;
 }
 
 /* blog post section */

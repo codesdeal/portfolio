@@ -5,8 +5,15 @@
  */
 ?>
 
-<section class="portfolio-grid section-gap">
+<section id="portfolio" class="portfolio-grid section-gap">
     <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-sec">
+                    <h2 class="section-title"><?php esc_html_e("Project Showcase", "_themename"); ?></h2>                        
+                </div>
+            </div>
+        </div>
         <div class="portfolio-filters mb-5">
             <?php
             $terms = get_terms('project_type');
@@ -23,9 +30,6 @@
         </div>
 
         <div class="row g-4 portfolio-items">
-            <div class="title-sec">
-                <h2 class="section-title"><?php esc_html_e("Projects", '_themename'); ?></h2>                        
-            </div>
             <?php
             $portfolio_query = new WP_Query([
                 'post_type' => 'portfolio',

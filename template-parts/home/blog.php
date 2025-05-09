@@ -1,10 +1,10 @@
 <!-- blog post section-->
-<section id="blog" class="testimonials-section section-gap">
+<section id="our_blog" class="testimonials-section section-gap">
     <div class="container">
         <div class="row g-4">
             <!-- Section Title -->
             <div class="title-sec">
-                <h2 class="section-title"><?php esc_html_e("Blog", '_themename'); ?></h2>
+                <h2 class="section-title"><?php esc_html_e("Latest Insights", "_themename"); ?></h2>
             </div>
             <div class="top-title-sec">
                 <?php echo get_theme_mod( '_themename_home_blog_overview', '' ); ?>

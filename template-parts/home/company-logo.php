@@ -1,10 +1,10 @@
 <!-- Home Features section -->
-<section id="dine-with-us" class="section-gap">
+<section id="our_clients" class="section-gap">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="title-sec">
-                    <h2 class="section-title"><?php esc_html_e("Clients", '_themename'); ?></h2>                          
+                <div class="title-sec" data-aos="fade-up">
+                    <h2 class="section-title"><?php esc_html_e("Partners in Excellence", '_themename'); ?></h2>                          
                 </div>
                 <div class="client-logo-sec">
                     <?php
