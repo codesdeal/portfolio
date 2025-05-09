@@ -60,7 +60,7 @@
 
                     .overlay-content {
                         text-align: center;
-                        color: var(--wp--preset--color--white);
+                        color: var(--wp--preset--color--secondary);
 
                         h3 {
                             font-size: var(--wp--preset--size--text--block--21);
@@ -76,15 +76,15 @@
                             display: inline-block;
                             margin-top: 1rem;
                             padding: 0.5rem 1.5rem;
-                            border: 2px solid var(--wp--preset--color--white);
+                            border: 2px solid var(--wp--preset--color--primary);
                             color: var(--wp--preset--color--white);
                             border-radius: 30px;
                             transition: all 0.3s ease;
                             text-decoration: none;
 
                             &:hover {
-                                background: var(--wp--preset--color--white);
-                                color: var(--wp--preset--color--primary);
+                                background: var(--wp--preset--color--secondary);
+                                color: var(--wp--preset--color--white);
                             }
                         }
                     }

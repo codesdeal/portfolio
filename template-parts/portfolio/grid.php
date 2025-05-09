@@ -21,7 +21,7 @@
                 <ul class="filter-buttons">
                     <li><button class="active" data-filter="*"><?php _e('All', '_themename'); ?></button></li>
                     <?php foreach ($terms as $term) : ?>
-                        <li><button data-filter=".<?php echo esc_attr($term->slug); ?>">
+                        <li><button data-filter=".<?php echo esc_attr($term->slug); ?>" class="btn-view">
                             <?php echo esc_html($term->name); ?>
                         </button></li>
                     <?php endforeach; ?>
