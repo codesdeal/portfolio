@@ -30,6 +30,21 @@ get_header(); ?>
     <?php get_template_part('template-parts/home/blog'); ?>
     <!-- ###home blog section -->
 
+    <div id="lottie-animation" style="width: 100px; height: 100px;"></div>
+
 </main>
 <!-- ###main section -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        lottie.loadAnimation({
+            container: document.getElementById('lottie-animation'), // the DOM element
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://profile.test/wp-content/uploads/2025/05/Animation-1746852653801.json' // your file URL
+        });
+    });
+</script>
+
 <?php get_footer(); ?>

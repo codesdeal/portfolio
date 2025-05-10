@@ -95,6 +95,10 @@ if ( ! function_exists( '_themename_sanitize_media' ) ) {
 			'bmp'          => 'image/bmp',
 			'tif|tiff'     => 'image/tiff',
 			'ico'          => 'image/x-icon',
+			'svg'          => 'image/svg+xml',
+
+			// Lottie files
+			'json'         => 'application/json',
 
 			// Videos
 			'mp4'          => 'video/mp4',
@@ -107,6 +111,8 @@ if ( ! function_exists( '_themename_sanitize_media' ) ) {
 		return ( $file_ext['ext'] ? $file : $setting->default );
 	}
 }
+
+
 
 if(!function_exists('_themename_verify_security')) {
     function _themename_verify_security($nonce_name, $action_name, $redirect_on_fail = true) {

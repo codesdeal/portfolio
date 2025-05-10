@@ -43,4 +43,24 @@ add_action('init', function(){
 // 	load_theme_textdomain($domain, get_template_directory() . '/languages');
 //   });
 
+
+// Allow JSON uploads (for Lottie files)
+function _themename_allow_json_uploads( $mimes ) {
+	$mimes['json'] = 'application/json';
+	return $mimes;
+}
+add_filter( 'upload_mimes', '_themename_allow_json_uploads' );
+
+// Allow SVG uploads
+function _themename_allow_svg_uploads( $mimes ) {
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
+}
+add_filter( 'upload_mimes', '_themename_allow_svg_uploads' );
+// Allow WebM uploads
+function _themename_allow_webm_uploads( $mimes ) {
+	$mimes['webm'] = 'video/webm';
+	return $mimes;
+}
+add_filter( 'upload_mimes', '_themename_allow_webm_uploads' );
 ?>

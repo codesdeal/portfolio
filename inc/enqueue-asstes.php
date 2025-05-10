@@ -26,3 +26,10 @@ function _themename_customize_preview_js() {
     wp_enqueue_script( '_themename-customize-preview', get_template_directory_uri() . '/dist/assets/js/customize-preview.js', array( 'customize-preview', 'jquery' ), '1.0.0', true );
 }
 add_action( 'customize_preview_init', '_themename_customize_preview_js' );
+
+
+// Allow JSON uploads (for Lottie files)
+function _themename_enqueue_lottie() {
+    wp_enqueue_script( 'lottie', 'https://unpkg.com/lottie-web@5.10.2/build/player/lottie.min.js', [], null, true );
+}
+add_action( 'wp_enqueue_scripts', '_themename_enqueue_lottie' );
