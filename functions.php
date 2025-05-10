@@ -48,9 +48,12 @@ add_action('init', function(){
 
 // Allow JSON uploads (for Lottie files)
 function _themename_allow_json_uploads( $mimes ) {
-	$mimes['json'] = 'application/json';
-	return $mimes;
+    if ( current_user_can( 'manage_options' ) ) {
+        $mimes['json'] = 'application/json';
+    }
+    return $mimes;
 }
 add_filter( 'upload_mimes', '_themename_allow_json_uploads' );
+
 
 ?>
