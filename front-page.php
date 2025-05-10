@@ -30,7 +30,7 @@ get_header(); ?>
     <?php get_template_part('template-parts/home/blog'); ?>
     <!-- ###home blog section -->
 
-    <div id="lottie-animation" style="width: 300px;"></div>
+    <div id="lottie-animation" style="width: 300px; height: 300px;"></div>
 
 
 </main>
