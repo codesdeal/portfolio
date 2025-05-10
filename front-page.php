@@ -30,20 +30,9 @@ get_header(); ?>
     <?php get_template_part('template-parts/home/blog'); ?>
     <!-- ###home blog section -->
 
-    <div id="lottie-animation" style="width: 300px; height: 300px;"></div>
+    <div id="lottie-animation" style="width: 300px;"></div>
 
 
 </main>
 <!-- ###main section -->
- <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        lottie.loadAnimation({
-            container: document.getElementById('lottie-animation'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: '<?php echo get_template_directory_uri(); ?>/dist/assets/animations/kidsstuf-station.json'
-        });
-    });
-</script>
 <?php get_footer(); ?>

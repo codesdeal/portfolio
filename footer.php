@@ -12,6 +12,19 @@
                 <?php get_template_part('template-parts/footer/info'); ?>
         </footer>
 
+        <!-- Lottie Animation -->
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    lottie.loadAnimation({
+                        container: document.getElementById('lottie-animation'),
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: '<?php echo get_template_directory_uri(); ?>/dist/assets/animations/kidsstuf-station.json'
+                    });
+                });
+            </script>
+
         <?php wp_footer(); ?>
     </body>
 </html>
