@@ -11,20 +11,9 @@
                 <?php get_template_part('template-parts/footer/widgets'); ?>
                 <?php get_template_part('template-parts/footer/info'); ?>
         </footer>
-
-        <!-- Lottie Animation -->
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    lottie.loadAnimation({
-                        container: document.getElementById('lottie-animation'),
-                        renderer: 'svg',
-                        loop: true,
-                        autoplay: true,
-                        path: '<?php echo get_template_directory_uri(); ?>/dist/assets/animations/kidsstuf-station.json'
-                    });
-                });
-            </script>
-
+        <!-- ###footer section -->
         <?php wp_footer(); ?>
     </body>
 </html>
+
+https://profile.test/wp-content/uploads/2025/05/banner.json
