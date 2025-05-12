@@ -65,7 +65,6 @@ const paths = {
   scripts: {
     src: [
       'src/assets/js/bundle.js',
-      'src/assets/js/lottie.min.js',
       'src/assets/js/admin.js',
       'src/assets/js/customize-preview.js',
       'src/assets/js/service-worker.js',
@@ -73,8 +72,8 @@ const paths = {
     dest: 'dist/assets/js',
   },
   images: {
-    src: ['src/assets/images/**/*.{jpg,jpeg,png,svg,gif}', 'src/assets/animations/**/*.{json,svg}'],
-    dest: 'dist/assets',
+    src: ['src/assets/images/**/*.{jpg,jpeg,png,svg,gif}'],
+    dest: 'dist/assets/images',
   },
   fonts: {
     src: 'node_modules/@fortawesome/fontawesome-free/webfonts/*',

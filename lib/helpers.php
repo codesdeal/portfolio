@@ -168,3 +168,10 @@ if (!function_exists('_themename_prepare_html_attributes')) {
     }
 }
 
+
+// Load Language file
+add_action('init', function(){
+    $mo = '_themename-'. determine_locale() . '.mo';
+    $path = get_template_directory(__FILE__) . 'languages/' .$mo ;
+    load_textdomain( '_themename', $path  );
+});

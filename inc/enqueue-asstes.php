@@ -5,7 +5,6 @@ function _themename_assets() {
     
     wp_enqueue_script('jquery');   
     wp_enqueue_script('_themename-scripts', get_template_directory_uri() . '/dist/assets/js/bundle.js', array('jquery'), '1.0.0', true);
-    wp_enqueue_script('_themename-lottie', get_template_directory_uri() . '/dist/assets/js/lottie.min.js', array(), '5.12.0', true);
 
     wp_localize_script('_themename-scripts', '_themename', array(
         'nonce' => wp_create_nonce('theme_error_logging'),

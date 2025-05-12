@@ -15,5 +15,3 @@
         <?php wp_footer(); ?>
     </body>
 </html>
-
-https://profile.test/wp-content/uploads/2025/05/banner.json

@@ -6,7 +6,7 @@
                 <div class="title-sec" data-aos="fade-up">
                     <h2 class="section-title"><?php esc_html_e("Partners in Excellence", '_themename'); ?></h2>                          
                 </div>
-                <div class="client-logo-sec">
+                <div class="client-logo-sec" data-aos="fade-left">
                     <?php
                     $company_logos = new WP_Query( array(
                         'post_type'      => 'company_logo',

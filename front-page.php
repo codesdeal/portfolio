@@ -29,32 +29,7 @@ get_header(); ?>
     <!-- home blog section -->
     <?php get_template_part('template-parts/home/blog'); ?>
     <!-- ###home blog section -->
-
-    <div id="lottie-animation"></div>
-
-
-
 </main>
-<!-- ###main section -->
-    <?php
-        $lottie_path = content_url('/uploads/2025/05/data.json');
-    ?>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            if (typeof lottie !== 'undefined') {
-                lottie.loadAnimation({
-                    container: document.getElementById('lottie-animation'),
-                    renderer: 'svg',
-                    loop: true,
-                    autoplay: true,
-                    path: "<?php echo esc_url($lottie_path); ?>"
-                });
-            } else {
-                console.error("Lottie library is not loaded.");
-            }
-        });
-    </script>
-
-
+<!-- ###main -->
 
 <?php get_footer(); ?>
