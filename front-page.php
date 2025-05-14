@@ -14,6 +14,10 @@ get_header(); ?>
     <?php get_template_part('template-parts/home/hero'); ?>
     <!-- ###hero section -->
 
+    <!-- about me section -->
+    <?php get_template_part('template-parts/home/overview'); ?>
+    <!-- ###about me section -->
+
     <!-- featured clients section -->
     <?php get_template_part('template-parts/home/company-logo'); ?>
     <!-- ###featured clients section -->

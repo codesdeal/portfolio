@@ -1,5 +1,5 @@
 <!-- Home Features section -->
-<section id="our_clients" class="section-gap">
+<section id="our_clients" class="testimonials-section">
     <div class="container">
         <div class="row">
             <div class="col-12">
