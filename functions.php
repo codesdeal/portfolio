@@ -21,4 +21,7 @@ _themename_include_all_files();
 // Include the Mega Menu Walker
 require_once get_template_directory() . '/inc/class-mega-menu-walker.php';
 
+add_image_size( 'portfolio-thumb', 600, 300, true ); // cropped image
+
+
 ?>
