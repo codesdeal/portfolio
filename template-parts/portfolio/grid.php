@@ -53,7 +53,7 @@
                         <div class="card" data-aos="fade-up">
                             <?php if (has_post_thumbnail()) : ?>
                                 <div class="card-img">
-                                    <?php the_post_thumbnail('large', ['class' => 'img-responsive responsive--full']); ?>
+                                    <?php the_post_thumbnail('medium_large', 'style=max-width:100%;height:auto;'); ?>
                                     <div class="card-img-overlay">
                                         <div class="overlay-content">
                                             <h3><?php the_title(); ?></h3>
