@@ -539,6 +539,20 @@ li.copyright-info-item:last-child {
 
 /* ###contact page */
 
+/* portfolio items */
+.portfolio-item .card-img {
+    height: 350px; /* or 400px, adjust as needed */
+    overflow: hidden;
+    position: relative;
+}
+
+.portfolio-item .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* crop while keeping aspect ratio */
+    display: block;
+}
+
 /* Mobile specific styles */
 @media (max-width: 639px) {
   #footer .mobile-spacing {
