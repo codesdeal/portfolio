@@ -447,6 +447,8 @@ function _themename_sanitize_footer_info( $input ) {
 		'h4'   => [ 'class' => [] ],
 		'h5'   => [ 'class' => [] ],
 		'h6'   => [ 'class' => [] ],
+        'strong' => [ 'class' => [] ],
+        'quote' => [ 'class' => [] ],
 		'p'    => [ 'class' => [] ],
 		'div'  => [ 'class' => [], 'id' => [] ],
 		'span' => [ 'class' => [] ],
