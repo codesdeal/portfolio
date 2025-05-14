@@ -5,7 +5,7 @@
  */
 ?>
 
-<section id="portfolio" class="testimonials-section section-gap">
+<section id="portfolio" class="portfolio-grid section-gap">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
