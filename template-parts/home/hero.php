@@ -20,8 +20,8 @@
                         <?php if ($banner_text) : ?>
                             <p class="hero-txt">
                                 <?php echo wp_kses_post($banner_text); ?>
-                                <button href="https://www.upwork.com/freelancers/~01d1c4a90427d3dbdd" target="_blank" class="btn-view">Hire on UpWork</button>
                             </p>
+                            <button onclick="window.open('https://www.upwork.com/freelancers/~01d1c4a90427d3dbdd', '_blank')" class="btn-view">Hire on UpWork</button>
                         <?php endif; ?>
                     </div>
                 </div>
