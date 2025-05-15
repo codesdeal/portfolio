@@ -454,6 +454,7 @@ function _themename_sanitize_footer_info( $input ) {
 		'ul'   => [ 'class' => [] ],
 		'li'   => [ 'class' => [] ],
 		'br'   => [],
+        'b'   => [],
         'strong' => [],
 		'i'    => [ 'class' => [] ],
 		'a'    => [
