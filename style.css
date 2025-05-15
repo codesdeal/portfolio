@@ -156,7 +156,7 @@ body {
     font-weight: 400;
     text-shadow: 2px 2px 4px rgb(0 0 0 / 50%);        
     margin: 0;
-    text-align: justify;
+    text-align: left;
 }
 
 /* ###hero section */
@@ -576,7 +576,7 @@ li.copyright-info-item:last-child {
     width: fit-content;
     margin: 0 auto;
   }
-  
+
   li.copyright-info-item {
     border: 0;
   }
