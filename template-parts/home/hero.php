@@ -16,11 +16,11 @@
 
                 <div class="container">
                     <?php $banner_text = get_theme_mod('_themename_home_banner_text', ''); ?>
-                    <div class="hero-content col-md-8">
+                    <div class="hero-content col-md-7" data-aos="fade-up">
                         <?php if ($banner_text) : ?>
                             <p class="hero-txt">
                                 <?php echo wp_kses_post($banner_text); ?>
-                                <a href="https://www.upwork.com/freelancers/~01d1c4a90427d3dbdd" target="_blank" class="btn-view">Hire on UpWork</a>
+                                <button href="https://www.upwork.com/freelancers/~01d1c4a90427d3dbdd" target="_blank" class="btn-view">Hire on UpWork</button>
                             </p>
                         <?php endif; ?>
                     </div>
