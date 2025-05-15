@@ -6,7 +6,7 @@
  */
 ?>
 
-<section id="testimonials" class="testimonials-section section-gap">
+<section id="testimonials" class="testimonials-section">
     <div class="container">
         <div class="row">
             <div class="col-12">

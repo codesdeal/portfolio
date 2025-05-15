@@ -553,6 +553,15 @@ li.copyright-info-item:last-child {
     display: block;
 }
 
+.our-client-section, .portfolio-section {
+    background-color: var(--wp--preset--color--gray);
+    padding: 4rem 0;
+}
+
+.about-section, .our-blog-section {
+    padding: 4rem 0;
+}
+
 /* Mobile specific styles */
 @media (max-width: 639px) {
   #footer .mobile-spacing {

@@ -1,5 +1,5 @@
 <!-- Home Features section -->
-<section id="our_clients" class="testimonials-section">
+<section id="our_clients" class="our-client-section">
     <div class="container">
         <div class="row">
             <div class="col-12">
