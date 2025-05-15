@@ -98,7 +98,7 @@ function _themename_customize_register($wp_customize) {
 		'_themename_home_banner_text',
 		[
 			'default'           => '',
-			'sanitize_callback' => 'sanitize_text_field',
+			'sanitize_callback' => '_themename_sanitize_footer_info',
 		]
 	);
 
