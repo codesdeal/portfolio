@@ -5,7 +5,7 @@
  */
 ?>
 
-<section id="portfolio" class="portfolio-section">
+<section id="portfolio" class="portfolio-grid portfolio-section">
     <div class="container">
         <div class="row">
             <div class="col-md-12">

@@ -553,9 +553,13 @@ li.copyright-info-item:last-child {
     display: block;
 }
 
-.our-client-section, .portfolio-section {
+.our-client-section {
     background-color: var(--wp--preset--color--gray);
-    padding: 4rem 0;
+    padding: 0 0 4rem;
+}
+
+ .portfolio-section {
+    background-color: var(--wp--preset--color--gray);
 }
 
 .about-section, .our-blog-section {
