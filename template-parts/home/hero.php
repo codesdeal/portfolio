@@ -2,7 +2,7 @@
 <section id="hero" class="hero-section">
     <div class="container-fluid px-0">
         <div class="row">
-            <div class="col-12">
+            <div class="col-md-12">
                 <?php 
                 $banner_image_id = get_theme_mod('_themename_home_banner_image', '');
 
@@ -16,7 +16,7 @@
 
                 <div class="container">
                     <?php $banner_text = get_theme_mod('_themename_home_banner_text', ''); ?>
-                    <div class="hero-content col-lg-6">
+                    <div class="hero-content col-md-6">
                         <?php if ($banner_text) : ?>
                             <h1 class="hero-txt">
                                 <?php echo wp_kses_post($banner_text); ?>
