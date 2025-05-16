@@ -19,10 +19,12 @@ $fa-font-path: "../webfonts";
 @import "../../../node_modules/@fortawesome/fontawesome-free/scss/brands";
 @import './objects/wp';
 @import './objects/grid';
+@import './components/hero';
 @import './components/post';
 @import './components/page';
 @import './components/widget';
 @import './components/footer';
+
 
 // @import './components/header';
 @import './components/comment';

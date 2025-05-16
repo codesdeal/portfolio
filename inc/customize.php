@@ -93,6 +93,41 @@ function _themename_customize_register($wp_customize) {
         )
     );
 
+    // Mobile fallback image setting
+    $wp_customize->add_setting(
+        '_themename_home_banner_image_mobile',
+        array(
+            'default'           => '',
+            'capability'        => 'edit_theme_options',
+            'transport'         => 'refresh',
+            'sanitize_callback' => 'absint'
+        )
+    );
+
+    // Mobile fallback image control
+    $wp_customize->add_control(
+        new WP_Customize_Media_Control(
+            $wp_customize,
+            '_themename_home_banner_image_mobile',
+            array(
+                'label'       => __('Upload Mobile Fallback Image', '_themename'),
+                'description' => __('This image will be displayed on mobile devices when no video is set.', '_themename'),
+                'section'     => '_themename_home_banner',
+                'mime_type'   => 'image',
+                'button_labels' => array(
+                    'select'       => __('Select Image', '_themename'),
+                    'change'       => __('Change Image', '_themename'),
+                    'remove'       => __('Remove', '_themename'),
+                    'default'      => __('Default', '_themename'),
+                    'placeholder'  => __('No image selected', '_themename'),
+                    'frame_title'  => __('Select Image', '_themename'),
+                    'frame_button' => __('Choose Image', '_themename'),
+                )
+            )
+        )
+    );
+
+
     // Register Banner Text setting.
 	$wp_customize->add_setting(
 		'_themename_home_banner_text',

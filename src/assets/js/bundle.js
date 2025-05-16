@@ -10,6 +10,12 @@ import AOS from 'aos';
 
 // Initialize Bootstrap components
 document.addEventListener('DOMContentLoaded', function () {
+	// for lazy load banner image
+	document.querySelectorAll('.image-background').forEach((bg) => {
+		const src = bg.getAttribute('data-bg');
+		if (src) bg.style.backgroundImage = `url(${src})`;
+	});
+
 	// Initialize AOS
 	AOS.init({
 		duration: 800,
