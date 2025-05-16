@@ -579,8 +579,4 @@ li.copyright-info-item:last-child {
   li.copyright-info-item {
     border: 0;
   }
-
-  .hero-txt {
-    visibility: hidden;
-  }
 }
