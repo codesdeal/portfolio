@@ -460,7 +460,7 @@ function _themename_customize_register($wp_customize) {
     ]);
 
     $wp_customize->add_setting('_themename_achievements_activate', [
-        'default' => true, // Default is to show the section
+        'default' => true, 
         'sanitize_callback' => '_themename_sanitize_checkbox',
     ]);
     
@@ -471,7 +471,7 @@ function _themename_customize_register($wp_customize) {
     ]);
 
     $wp_customize->add_setting('_themename_achievment_title', [
-        'default' => 'MY ACHIEVEMENTS',
+        'default' => 'Achievements on Upwork',
         'sanitize_callback' => 'wp_kses_post',
     ]);
 
@@ -499,7 +499,7 @@ function _themename_customize_register($wp_customize) {
     // Add settings and controls for each counter
     for ($i = 1; $i <= $num_achievements; $i++) {
         $wp_customize->add_setting("_themename_counter_number_$i", [
-            'default' => '5454',
+            'default' => '27',
             'sanitize_callback' => 'absint',
         ]);
         $wp_customize->add_control("_themename_counter_number_$i", [
@@ -509,7 +509,7 @@ function _themename_customize_register($wp_customize) {
         ]);
 
         $wp_customize->add_setting("_themename_counter_title_$i", [
-            'default' => 'articles',
+            'default' => 'Completed Jobs',
             'sanitize_callback' => 'wp_kses_post',
         ]);
         $wp_customize->add_control("_themename_counter_title_$i", [
@@ -519,7 +519,7 @@ function _themename_customize_register($wp_customize) {
         ]);
 
         $wp_customize->add_setting("_themename_counter_description_$i", [
-            'default' => 'Habitasse platea dictumst. Ut tellus sem, suscipit ut enim id.',
+            'default' => 'Successfully completed those jobs on UpWork',
             'sanitize_callback' => 'wp_kses_post',
         ]);
         $wp_customize->add_control("_themename_counter_description_$i", [
