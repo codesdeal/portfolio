@@ -18,9 +18,9 @@ get_header(); ?>
     <?php get_template_part('template-parts/home/overview'); ?>
     <!-- ###about me section -->
 
-    <!-- featured clients section -->
-    <?php get_template_part('template-parts/home/company-logo'); ?>
-    <!-- ###featured clients section -->
+    <!-- achievements section -->
+    <?php get_template_part('template-parts/home/achievements'); ?>
+    <!-- ###achievements section -->
 
     <!-- testimonials section -->
     <?php get_template_part('template-parts/home/testimonials'); ?>
@@ -30,8 +30,12 @@ get_header(); ?>
     <?php get_template_part('template-parts/portfolio/grid'); ?>
     <!-- ###home portfolio section -->
 
+    <!-- featured clients section -->
+    <?php get_template_part('template-parts/home/company-logo'); ?>
+    <!-- ###featured clients section -->
+
     <!-- home blog section -->
-    <?php get_template_part('template-parts/home/blog'); ?>
+    <?php // get_template_part('template-parts/home/blog'); ?>
     <!-- ###home blog section -->
 </main>
 <!-- ###main -->

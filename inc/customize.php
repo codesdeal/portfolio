@@ -451,6 +451,84 @@ function _themename_customize_register($wp_customize) {
         global $post;
        return is_single() && $post->post_type === 'post';
     }
+
+    // ############ Achievements section Start ############
+    $wp_customize->add_section('_themename_achievements', [
+        'title' => __('Counter Sections', '_themename'),
+        'priority' => 60,
+        'description' => __('Customize the Counter Sections', '_themename'),
+    ]);
+
+    $wp_customize->add_setting('_themename_achievements_activate', [
+        'default' => true, // Default is to show the section
+        'sanitize_callback' => '_themename_sanitize_checkbox',
+    ]);
+    
+    $wp_customize->add_control('_themename_achievements_activate', [
+        'label' => __('Activate Achievements Section', '_themename'),
+        'section' => '_themename_achievements',
+        'type' => 'checkbox',
+    ]);
+
+    $wp_customize->add_setting('_themename_achievment_title', [
+        'default' => 'MY ACHIEVEMENTS',
+        'sanitize_callback' => 'wp_kses_post',
+    ]);
+
+    $wp_customize->add_control('_themename_achievment_title', [
+        'label' => __('Achievement Section Title', '_themename'),
+        'section' => '_themename_achievements',
+        'type' => 'text',
+    ]);
+
+    // Setting for number of counters
+    $wp_customize->add_setting('_themename_num_achievements', [
+        'default' => '3',
+        'sanitize_callback' => 'absint',
+        'transport' => 'refresh',
+    ]);
+
+    $wp_customize->add_control('_themename_num_achievements', [
+        'label' => __('Number of Counters', '_themename'),
+        'section' => '_themename_achievements',
+        'type' => 'number',
+    ]);
+
+    $num_achievements = get_theme_mod('_themename_num_achievements', 4);
+
+    // Add settings and controls for each counter
+    for ($i = 1; $i <= $num_achievements; $i++) {
+        $wp_customize->add_setting("_themename_counter_number_$i", [
+            'default' => '5454',
+            'sanitize_callback' => 'absint',
+        ]);
+        $wp_customize->add_control("_themename_counter_number_$i", [
+            'label' => __("Counter $i Number", '_themename'),
+            'section' => '_themename_achievements',
+            'type' => 'number',
+        ]);
+
+        $wp_customize->add_setting("_themename_counter_title_$i", [
+            'default' => 'articles',
+            'sanitize_callback' => 'wp_kses_post',
+        ]);
+        $wp_customize->add_control("_themename_counter_title_$i", [
+            'label' => __("Counter $i Title", '_themename'),
+            'section' => '_themename_achievements',
+            'type' => 'text',
+        ]);
+
+        $wp_customize->add_setting("_themename_counter_description_$i", [
+            'default' => 'Habitasse platea dictumst. Ut tellus sem, suscipit ut enim id.',
+            'sanitize_callback' => 'wp_kses_post',
+        ]);
+        $wp_customize->add_control("_themename_counter_description_$i", [
+            'label' => __("Counter $i Description", '_themename'),
+            'section' => '_themename_achievements',
+            'type' => 'textarea',
+        ]);
+    }  
+    // ############ Achievements section End ############
     
 }
 add_action( 'customize_register', '_themename_customize_register' );

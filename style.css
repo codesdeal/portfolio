@@ -553,12 +553,12 @@ li.copyright-info-item:last-child {
     display: block;
 }
 
-.our-client-section, .portfolio-section {
+.portfolio-section {
     background-color: var(--wp--preset--color--gray);
     padding: 0 0 4rem;
 }
 
-.about-section, .our-blog-section {
+.about-section, .our-blog-section, .our-client-section {
     padding: 4rem 0;
 }
 
