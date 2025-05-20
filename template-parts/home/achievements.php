@@ -19,7 +19,7 @@
                 </div>
                 <div class="counter-wrapper">
                     <?php 
-                        $num_achievements = get_theme_mod('num_achievements', 4); 
+                        $num_achievements = get_theme_mod('_themename_num_achievements', 3); 
                         for ($i = 1; $i <= $num_achievements; $i++) : ?>
                         <div class="<?php echo "counter counter-$i"; ?>" data-aos="fade-up" data-aos-delay="<?php echo $i * 100; ?>">
                             <div class="<?php echo "conter-number conter-number-$i"; ?>">
