@@ -123,40 +123,40 @@ function _themename_optimize_image_loading($attr, $attachment, $size) {
 add_filter('wp_get_attachment_image_attributes', '_themename_optimize_image_loading', 10, 3);
 
 // Add critical CSS inline
-function _themename_add_critical_css() {
-    $critical_css_path = get_template_directory() . '/dist/assets/css/critical.css';
+// function _themename_add_critical_css() {
+//     $critical_css_path = get_template_directory() . '/dist/assets/css/critical.css';
     
-    if (file_exists($critical_css_path)) {
-        $critical_css = file_get_contents($critical_css_path);
-        if ($critical_css) {
-            printf(
-                '<style id="critical-css">%s</style>',
-                wp_strip_all_tags($critical_css)
-            );
-        }
-    }
-}
-add_action('wp_head', '_themename_add_critical_css', 1);
+//     if (file_exists($critical_css_path)) {
+//         $critical_css = file_get_contents($critical_css_path);
+//         if ($critical_css) {
+//             printf(
+//                 '<style id="critical-css">%s</style>',
+//                 wp_strip_all_tags($critical_css)
+//             );
+//         }
+//     }
+// }
+// add_action('wp_head', '_themename_add_critical_css', 1);
 
 // Preload critical assets
 function _themename_preload_assets() {
     $preload_files = array(
-        array(
-            'type' => 'style',
-            'path' => '/dist/assets/css/critical.css',
-            'as' => 'style'
-        ),
+        // array(
+        //     'type' => 'style',
+        //     'path' => '/dist/assets/css/critical.css',
+        //     'as' => 'style'
+        // ),
         array(
             'type' => 'script',
             'path' => '/dist/assets/js/bundle.js',
             'as' => 'script'
-        ),
-        array(
-            'type' => 'font',
-            'path' => '/dist/assets/webfonts/urbanist-v10-latin-regular.woff2',
-            'as' => 'font',
-            'crossorigin' => true
-        )
+        ) //,
+        // array(
+        //     'type' => 'font',
+        //     'path' => '/dist/assets/webfonts/urbanist-v10-latin-regular.woff2',
+        //     'as' => 'font',
+        //     'crossorigin' => true
+        // )
     );
     
     foreach ($preload_files as $file) {
