@@ -455,7 +455,7 @@ function _themename_customize_register($wp_customize) {
     // ############ Achievements section Start ############
     $wp_customize->add_section('_themename_achievements', [
         'title' => __('Achievements Sections', '_themename'),
-        'priority' => 60,
+        'priority' => 30,
         'description' => __('Customize the Achievements Sections', '_themename'),
     ]);
 
