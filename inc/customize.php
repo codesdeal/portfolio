@@ -454,9 +454,9 @@ function _themename_customize_register($wp_customize) {
 
     // ############ Achievements section Start ############
     $wp_customize->add_section('_themename_achievements', [
-        'title' => __('Counter Sections', '_themename'),
+        'title' => __('Achievements Sections', '_themename'),
         'priority' => 60,
-        'description' => __('Customize the Counter Sections', '_themename'),
+        'description' => __('Customize the Achievements Sections', '_themename'),
     ]);
 
     $wp_customize->add_setting('_themename_achievements_activate', [
@@ -489,7 +489,7 @@ function _themename_customize_register($wp_customize) {
     ]);
 
     $wp_customize->add_control('_themename_num_achievements', [
-        'label' => __('Number of Counters', '_themename'),
+        'label' => __('Number of Counters section', '_themename'),
         'section' => '_themename_achievements',
         'type' => 'number',
     ]);
